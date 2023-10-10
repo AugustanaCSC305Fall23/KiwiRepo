@@ -20,6 +20,7 @@
             <Button fx:id="createAPlan1" layoutX="383.0" layoutY="79.0" onAction="#switchToSecondary" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" text="Choose Premade Plan" />
             <Label layoutX="275.0" layoutY="228.0" text="logo here" />
             <Button fx:id="giveInformation" layoutY="284.0" mnemonicParsing="false" onAction="#informationButton" prefHeight="25.0" prefWidth="16.0" text="i" />
+            <Button fx:id="addCard" layoutX="87.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToAddCard" prefHeight="40.0" prefWidth="150.0" text="Add Card" />
          </children>
       </AnchorPane>
    </children>
