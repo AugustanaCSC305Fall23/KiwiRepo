@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" style="-fx-background-color: linear-gradient(purple,white);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.MenuPageController">
+   <children>
+      <AnchorPane prefHeight="310.0" prefWidth="492.0">
+         <children>
+            <Button fx:id="createAPlan" layoutX="87.0" layoutY="79.0" onAction="#switchToSecondary" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" text="Create a Plan" />
+            <Label layoutX="87.0" layoutY="14.0" text="Welcome to The Gymnastics Professor" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="createAPlan1" layoutX="383.0" layoutY="79.0" onAction="#switchToSecondary" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" text="Choose Premade Plan" />
+            <Label layoutX="275.0" layoutY="228.0" text="logo here" />
+            <Button fx:id="giveInformation" layoutY="284.0" mnemonicParsing="false" onAction="#informationButton" prefHeight="25.0" prefWidth="16.0" text="i" />
+         </children>
+      </AnchorPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

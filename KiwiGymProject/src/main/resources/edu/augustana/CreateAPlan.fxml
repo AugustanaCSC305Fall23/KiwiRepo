@@ -18,7 +18,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateAPlanController">
    <children>
       <GridPane layoutX="1.0" layoutY="2.0" prefHeight="513.0" prefWidth="650.0">
          <columnConstraints>
@@ -40,11 +41,14 @@
                </padding>
             </VBox>
             <ScrollBar orientation="VERTICAL" prefHeight="466.0" prefWidth="25.0" GridPane.columnIndex="4" />
+
             <SplitPane dividerPositions="0.49608610567514677" prefHeight="519.0" prefWidth="527.0" GridPane.columnIndex="5">
+
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="250.0">
                      <children>
                         <VBox prefHeight="500.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
                            <children>
                               <TextField prefHeight="26.0" prefWidth="230.0" text="Search">
                                  <VBox.margin>
@@ -116,7 +120,7 @@
                <children>
                   <AnchorPane prefHeight="516.0" prefWidth="102.0">
                      <children>
-                        <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Back" />
+                        <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
                         <VBox layoutX="1.0" layoutY="104.0" prefHeight="320.0" prefWidth="100.0">
                            <children>
                               <AnchorPane prefHeight="321.0" prefWidth="100.0">
