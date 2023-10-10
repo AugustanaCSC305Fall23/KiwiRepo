@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SecondaryController">
    <children>
       <GridPane layoutX="1.0" layoutY="2.0" prefHeight="519.0" prefWidth="650.0">
          <columnConstraints>
@@ -37,7 +37,7 @@
                </padding>
             </VBox>
             <ScrollBar orientation="VERTICAL" prefHeight="466.0" prefWidth="25.0" GridPane.columnIndex="4" />
-            <SplitPane dividerPositions="0.49608610567514677" prefHeight="527.0" prefWidth="521.0" GridPane.columnIndex="5">
+            <SplitPane dividerPositions="0.5" prefHeight="502.0" prefWidth="523.0" GridPane.columnIndex="5">
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="261.0">
                      <children>
@@ -103,7 +103,7 @@
                <children>
                   <AnchorPane prefHeight="516.0" prefWidth="102.0">
                      <children>
-                        <Button fx:id="backButton" layoutX="14.0" layoutY="41.0" onAction="#backButtonAction" mnemonicParsing="false" text="Back" />
+                        <Button fx:id="backButton" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
                      </children>
                   </AnchorPane>
                </children>
