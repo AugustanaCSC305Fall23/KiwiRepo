@@ -1,9 +1,12 @@
 package edu.augustana;
 
 import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 
 
 public class PrimaryController {
@@ -18,7 +21,10 @@ public class PrimaryController {
 
     }
     @FXML
-    private void switchToSecondary() throws IOException {
+    private Button createAPlan;
+
+    @FXML
+    private void switchToSecondary(ActionEvent event) throws IOException {
         App.setRoot("secondary");
     }
 }
