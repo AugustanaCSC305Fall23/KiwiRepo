@@ -32,4 +32,9 @@ public class PrimaryController {
     private void switchToSecondary(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("CreateAPlan");
     }
+
+    @FXML
+    private void switchToAddCard(ActionEvent event) throws IOException {
+        App.setRoot("addCard");
+    }
 }
