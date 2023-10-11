@@ -1,5 +1,19 @@
 package edu.augustana;
 
-public class FilterController {
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
+import java.io.IOException;
+
+public class FilterController {
+    @FXML
+    private Button backSearchBtn;
+
+    @FXML
+    private Button searchBtn;
+
+    private void backFromSearchAction(ActionEvent event) throws IOException{
+        GymnasticsApp.setRoot("CreateAPlan");
+    }
 }
