@@ -26,10 +26,4 @@ public class MenuPageController {
     private void switchToSecondary(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("CreateAPlan");
     }
-
-    // Allows the user access to the AddCard page from the menu
-    @FXML
-    private void switchToAddCard(ActionEvent event) throws IOException {
-        GymnasticsApp.setRoot("addCard");
-    }
 }

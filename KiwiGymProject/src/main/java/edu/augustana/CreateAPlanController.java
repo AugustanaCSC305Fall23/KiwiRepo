@@ -10,6 +10,8 @@ public class CreateAPlanController {
     private Button backButton;
     @FXML
     private Button filterAccessButton;
+    @FXML
+    private Button addCardBtn;
 
     // Allows user to access the Menu page from the CreateAPlan page
     @FXML
@@ -21,5 +23,10 @@ public class CreateAPlanController {
     @FXML
     void switchToFilter(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("Filter");
+    }
+
+    @FXML
+    private void switchToAddCard(ActionEvent event) throws IOException {
+        GymnasticsApp.setRoot("addCard");
     }
 }

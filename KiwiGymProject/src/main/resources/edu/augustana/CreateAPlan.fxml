@@ -103,7 +103,6 @@
                         <MenuButton layoutX="151.0" layoutY="14.0" mnemonicParsing="false" text="Print...">
                            <items>
                               <MenuItem mnemonicParsing="false" text="Print" />
-                              <MenuItem mnemonicParsing="false" text="Modify"/>
                               <MenuItem mnemonicParsing="false" text="Save" />
                            </items>
                         </MenuButton>
@@ -126,7 +125,7 @@
                               <AnchorPane prefHeight="321.0" prefWidth="100.0">
                                  <children>
                                     <Button fx:id="filterAccessButton" layoutX="39.0" layoutY="41.0" mnemonicParsing="false" onAction="#switchToFilter" prefHeight="26.0" prefWidth="53.0" text="Filter" />
-                                    <Button layoutX="39.0" layoutY="98.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Add" />
+                                    <Button fx:id="addCardBtn" layoutX="39.0" layoutY="98.0" mnemonicParsing="false" onAction="#switchToAddCard" prefHeight="26.0" prefWidth="53.0" text="Add" />
                                     <Button layoutX="39.0" layoutY="161.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Edit" />
                                     <Button layoutX="39.0" layoutY="226.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Delete" />
                                     <ImageView fitHeight="29.0" fitWidth="31.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
