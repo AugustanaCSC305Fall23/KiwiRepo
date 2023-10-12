@@ -23,7 +23,7 @@
             <Button fx:id="giveInformation" layoutY="284.0" mnemonicParsing="false" onAction="#informationButton" prefHeight="25.0" prefWidth="16.0" text="i" />
             <ImageView fitHeight="112.0" fitWidth="117.0" layoutX="243.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="file:/C:/git/KiwiRepo/KiwiGymProject/src/main/java/edu/augustana/assets/Screenshot%202023-09-20%20at%2012.13.48%20PM.png" />
+                  <Image url="file:/C:/git/KiwiRepo/KiwiGymProject/src/main/java/edu/augustana/assets/logo.png" />
                </image>
             </ImageView>
          </children>
