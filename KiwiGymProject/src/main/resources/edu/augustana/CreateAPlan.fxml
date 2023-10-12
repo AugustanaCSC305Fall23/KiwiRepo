@@ -141,11 +141,7 @@
                                     <Button layoutX="39.0" layoutY="226.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Delete" />
                                     <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="4.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-<<<<<<< HEAD
                                           <Image url="file:/C:/git/KiwiRepo/KiwiGymProject/src/main/java/edu/augustana/assets/Screenshot%202023-10-10%20at%201.22.52%20PM.png" />
-=======
-                                          <Image url="@../../../java/edu/augustana/assets/filter.png" />
->>>>>>> ec459005f478c198c4f2f8626b9fe1240b4faa98
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="40.0" fitWidth="29.0" layoutX="4.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
