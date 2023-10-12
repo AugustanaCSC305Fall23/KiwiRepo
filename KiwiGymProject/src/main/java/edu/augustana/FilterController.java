@@ -12,7 +12,7 @@ public class FilterController {
 
     @FXML
     private Button searchBtn;
-
+    @FXML
     private void backFromSearchAction(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("CreateAPlan");
     }
