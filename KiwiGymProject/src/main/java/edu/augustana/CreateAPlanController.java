@@ -11,11 +11,22 @@ public class CreateAPlanController {
     @FXML
     private Button filterAccessButton;
     @FXML
+    private Button addCardBtn;
+
+    // Allows user to access the Menu page from the CreateAPlan page
+    @FXML
     void switchToMain(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("MenuPage");
     }
+
+    //Allows user to access the Filter page from the CreateAPlan page
     @FXML
     void switchToFilter(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("Filter");
+    }
+
+    @FXML
+    private void switchToAddCard(ActionEvent event) throws IOException {
+        GymnasticsApp.setRoot("addCard");
     }
 }
