@@ -12,7 +12,8 @@ public class FilterController {
 
     @FXML
     private Button searchBtn;
-
+    //Allows access to the CreateAPlan page via the Filter page
+    @FXML
     private void backFromSearchAction(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("CreateAPlan");
     }
