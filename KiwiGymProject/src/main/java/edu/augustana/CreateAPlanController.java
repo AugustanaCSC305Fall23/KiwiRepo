@@ -10,10 +10,14 @@ public class CreateAPlanController {
     private Button backButton;
     @FXML
     private Button filterAccessButton;
+
+    // Allows user to access the Menu page from the CreateAPlan page
     @FXML
     void switchToMain(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("MenuPage");
     }
+
+    //Allows user to access the Filter page from the CreateAPlan page
     @FXML
     void switchToFilter(ActionEvent event) throws IOException{
         GymnasticsApp.setRoot("Filter");
