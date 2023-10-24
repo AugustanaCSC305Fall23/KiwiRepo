@@ -4,6 +4,8 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class CreateAPlanController {
     @FXML
@@ -21,8 +23,12 @@ public class CreateAPlanController {
 
     @FXML
     private Button savePlanButton;
+    FileChooser fileChooser = new FileChooser();
 
-
+    public void initialize(){
+        fileChooser.setTitle("Save");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+    }
     // Allows user to access the Menu page from the CreateAPlan page
     @FXML
     void switchToMain(ActionEvent event) throws IOException{
@@ -53,6 +59,7 @@ public class CreateAPlanController {
 
     @FXML
     void savePlan(ActionEvent event) {
-
+        Stage stage = new Stage();
+        fileChooser.showSaveDialog(stage);
     }
 }
