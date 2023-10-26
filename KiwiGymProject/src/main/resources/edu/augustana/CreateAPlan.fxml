@@ -2,165 +2,136 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateAPlanController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(purple, magenta);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateAPlanController">
    <children>
-      <GridPane layoutX="1.0" layoutY="2.0" prefHeight="513.0" prefWidth="650.0">
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints maxWidth="186.0" minWidth="0.0" prefWidth="0.0" />
-            <ColumnConstraints maxWidth="214.0" minWidth="0.0" prefWidth="102.0" />
-            <ColumnConstraints maxWidth="314.0" minWidth="0.0" prefWidth="25.0" />
-            <ColumnConstraints maxWidth="537.0" minWidth="4.0" prefWidth="513.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="1.0" prefWidth="1.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <GridPane gridLinesVisible="true" StackPane.alignment="CENTER">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="600.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="0.0" prefWidth="15.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <VBox alignment="CENTER" prefHeight="502.0" prefWidth="310.0" spacing="20.0" GridPane.columnIndex="6">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
-            </VBox>
-            <ScrollBar orientation="VERTICAL" prefHeight="466.0" prefWidth="25.0" GridPane.columnIndex="4" />
-
-            <SplitPane dividerPositions="0.49608610567514677" prefHeight="519.0" prefWidth="527.0" GridPane.columnIndex="5">
-
-               <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="510.0" prefWidth="250.0">
-                     <children>
-                        <VBox prefHeight="500.0" prefWidth="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-                           <children>
-                              <TextField prefHeight="26.0" prefWidth="230.0" text="Search">
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Label prefHeight="29.0" prefWidth="73.0" text="Events">
-                                 <VBox.margin>
-                                    <Insets left="80.0" top="40.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Label>
-                              <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Floor">
-                                 <VBox.margin>
-                                    <Insets left="60.0" top="30.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="115.0" text="Beam">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="60.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="116.0" text="Mushroom">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="60.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="116.0" text="Floor">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="60.0" top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="517.0" prefWidth="268.0">
-                     <children>
-                        <MenuButton layoutX="151.0" layoutY="14.0" mnemonicParsing="false" text="Print...">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Print" />
-                              <MenuItem mnemonicParsing="false" text="Save" />
-                           </items>
-                        </MenuButton>
-                        <VBox layoutX="7.0" layoutY="50.0" prefHeight="446.0" prefWidth="237.0">
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="236.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </items>
-            </SplitPane>
-            <VBox prefHeight="502.0" prefWidth="48.0" GridPane.columnIndex="3">
+            <ScrollBar fx:id="scrollBar" orientation="VERTICAL" GridPane.columnIndex="2" />
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Name of Current Plan" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="75.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="20.0" />
+               </font>
+            </Label>
+            <GridPane alignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.0" minWidth="10.0" prefWidth="63.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="143.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="191.0" minHeight="0.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="274.0" minHeight="10.0" prefHeight="274.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <AnchorPane prefHeight="516.0" prefWidth="102.0">
-                     <children>
-                        <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToMain" text="Back" />
-                        <VBox layoutX="1.0" layoutY="104.0" prefHeight="320.0" prefWidth="100.0">
-                           <children>
-                              <AnchorPane prefHeight="321.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="filterAccessButton" layoutX="39.0" layoutY="41.0" mnemonicParsing="false" onAction="#switchToFilter" prefHeight="26.0" prefWidth="53.0" text="Filter" />
-                                    <Button fx:id="addCardBtn" layoutX="39.0" layoutY="98.0" mnemonicParsing="false" onAction="#switchToAddCard" prefHeight="26.0" prefWidth="53.0" text="Add" />
-                                    <Button layoutX="39.0" layoutY="161.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Edit" />
-                                    <Button layoutX="39.0" layoutY="226.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="53.0" text="Delete" />
-                                    <ImageView fitHeight="29.0" fitWidth="31.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../java/edu/augustana/assets/Screenshot%202023-10-10%20at%201.22.52%20PM.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="40.0" fitWidth="29.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../java/edu/augustana/assets/Screenshot%202023-10-10%20at%201.37.21%20PM.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="41.0" fitWidth="29.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../java/edu/augustana/assets/Screenshot%202023-10-10%20at%201.41.05%20PM.png" />
-                                       </image>
-                                    </ImageView>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../java/edu/augustana/assets/Screenshot%202023-10-10%20at%201.42.33%20PM.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
-                           </children></VBox>
-                        <ImageView fx:id="GPLogo" fitHeight="40.0" fitWidth="45.0" layoutX="14.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../java/edu/augustana/assets/Screenshot%202023-09-20%20at%2012.13.48%20PM.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
+                  <Label text="Gender" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <CheckBox fx:id="maleCheckBox" mnemonicParsing="false" text="Male" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <CheckBox fx:id="femaleCheckBox" mnemonicParsing="false" text="Female" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="neutralCheckBox" mnemonicParsing="false" text="Neutral" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <Label text="Event" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="eventChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Difficulty" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="difficultyChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Short Code" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="shortCodeTextBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="50.0" promptText="EX: H1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Category" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="categoryChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Favorites" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <Label text="Equipment" GridPane.columnSpan="2" GridPane.rowIndex="8">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ChoiceBox fx:id="equipmentChioceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <CheckBox fx:id="addedCardsCheckBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Added Cards" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+                  <Button fx:id="addCardBtn" mnemonicParsing="false" text="Add New Card" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" onAction="#switchToAddCard"/>
+                  <Button fx:id="backButton" mnemonicParsing="false" text="Back" GridPane.halignment="CENTER" GridPane.valignment="CENTER" onAction="#switchToMain">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Button>
                </children>
-            </VBox>
+            </GridPane>
          </children>
       </GridPane>
    </children>
-</Pane>
+</StackPane>

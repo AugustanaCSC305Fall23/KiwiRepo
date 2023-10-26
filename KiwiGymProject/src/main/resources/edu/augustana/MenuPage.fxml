@@ -3,27 +3,39 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" style="-fx-background-color: linear-gradient(purple,white);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.MenuPageController">
+<StackPane prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: linear-gradient(purple, magenta);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.MenuPageController">
    <children>
-      <AnchorPane prefHeight="310.0" prefWidth="492.0">
+      <GridPane alignment="CENTER" StackPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Button fx:id="createAPlan" layoutX="87.0" layoutY="79.0" onAction="#switchToSecondary" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" text="Create a Plan" />
-            <Label layoutX="87.0" layoutY="14.0" text="Welcome to The Gymnastics Professor" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="createAPlan" onAction="#switchToSecondary" prefHeight="75.0" prefWidth="250.0" style="-fx-background-color: white;" text="Create a Plan" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" ellipsisString="" prefHeight="55.0" prefWidth="943.0" text="Welcome to The Gymnastics Professor" textAlignment="CENTER" textFill="WHITE" GridPane.columnSpan="3">
                <font>
-                  <Font name="Arial Bold" size="24.0" />
+                  <Font name="Arial Rounded MT Bold" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="createAPlan1" layoutX="383.0" layoutY="79.0" onAction="#switchToSecondary" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: white;" text="Choose Premade Plan" />
-            <Label layoutX="275.0" layoutY="228.0" text="logo here" />
-            <Button fx:id="giveInformation" layoutY="284.0" mnemonicParsing="false" onAction="#informationButton" prefHeight="25.0" prefWidth="16.0" text="i" />
+            <Button fx:id="createAPlan1" onAction="#switchToSecondary" prefHeight="75.0" prefWidth="250.0" style="-fx-background-color: white;" text="Choose Premade Plan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Label text="logo here" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="giveInformation" mnemonicParsing="false" onAction="#informationButton" prefHeight="28.0" prefWidth="25.0" text="i" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="300.0" top="75.0" />
+               </GridPane.margin></Button>
          </children>
-      </AnchorPane>
+      </GridPane>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</VBox>
+</StackPane>

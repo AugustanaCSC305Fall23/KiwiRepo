@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -17,8 +16,9 @@ public class GymnasticsApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("MenuPage"), 640, 480);
+        scene = new Scene(loadFXML("MenuPage"), 700, 500);
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.show();
     }
 

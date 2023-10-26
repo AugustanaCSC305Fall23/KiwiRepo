@@ -16,7 +16,6 @@ public class MenuPageController {
     @FXML
     void informationButton(ActionEvent event) {
         System.out.println("Developed by team Kiwi");
-
     }
     @FXML
     private Button createAPlan;
