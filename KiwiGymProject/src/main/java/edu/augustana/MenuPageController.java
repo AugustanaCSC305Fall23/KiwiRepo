@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -15,7 +16,7 @@ public class MenuPageController {
     // Allows accessibility to information about the development team
     @FXML
     void informationButton(ActionEvent event) {
-        System.out.println("Developed by team Kiwi");
+        new Alert(Alert.AlertType.INFORMATION, "Developed by Team Kiwi.").showAndWait();
     }
     @FXML
     private Button createAPlan;
