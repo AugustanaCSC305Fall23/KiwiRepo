@@ -18,15 +18,14 @@
       <GridPane gridLinesVisible="true" StackPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="250.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="600.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="56.0" minWidth="0.0" prefWidth="0.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="613.0" minWidth="10.0" prefWidth="613.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="225.0" minWidth="10.0" prefWidth="161.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Name of Current Plan" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Name of Current Plan" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="75.0" />
                </GridPane.margin>
@@ -130,12 +129,12 @@
                   </Button>
                </children>
             </GridPane>
-            <Button fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="3" GridPane.valignment="TOP">
+            <Button fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="75.0" top="25.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="printPlanButton" mnemonicParsing="false" onAction="#printPlan" text="Print" GridPane.columnIndex="3" GridPane.valignment="TOP">
+            <Button fx:id="printPlanButton" mnemonicParsing="false" onAction="#printPlan" text="Print" GridPane.columnIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="75.0" top="25.0" />
                </GridPane.margin>
