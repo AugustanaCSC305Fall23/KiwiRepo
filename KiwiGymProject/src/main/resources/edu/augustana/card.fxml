@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CardViewController">
+   <children>
+      <ImageView fx:id="cardImage" fitHeight="170.0" fitWidth="217.0" layoutX="4.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</Pane>

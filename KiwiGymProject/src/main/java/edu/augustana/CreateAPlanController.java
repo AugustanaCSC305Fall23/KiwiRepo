@@ -1,13 +1,26 @@
 package edu.augustana;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import com.opencsv.bean.CsvToBeanBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-public class CreateAPlanController {
+
+public class CreateAPlanController  implements Initializable{
     @FXML
     private Button addCardBtn;
     @FXML
@@ -40,10 +53,51 @@ public class CreateAPlanController {
     private Button printPlanButton;
     @FXML
     private Button savePlanButton;
+
+    @FXML
+    private GridPane cardGrid;
     FileChooser fileChooser = new FileChooser();
-    public void initialize(){
-        fileChooser.setTitle("Save");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+
+    private List<Card> cardBeans;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        //fileChooser.setTitle("Save");
+        //fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+        try {
+            cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/DEMO1.csv")).withType(Card.class).build().parse();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        int column = 0;
+        int row = 1;
+
+        try {
+            for (Card cardBean : cardBeans) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("card.fxml"));
+                Pane pane = fxmlLoader.load();
+                CardViewController cardController = fxmlLoader.getController();
+                cardController.setImgView(cardBean);
+
+                if(column == 3){
+                    column = 0;
+                    row += 1;
+                }
+
+                cardGrid.add(pane, column++, row);
+                GridPane.setMargin(pane, new Insets(1));
+
+
+
+
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     // Allows user to access the Menu page from the CreateAPlan page
