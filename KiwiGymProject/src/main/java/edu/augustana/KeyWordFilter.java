@@ -11,6 +11,6 @@ public class KeyWordFilter implements CardFilter{
     }
     @Override
     public boolean matches(Card candidate) {
-        return candidate.getKeyWords().equalsIgnoreCase(desiredKeys);
+        return candidate.getKeyWords().contains(desiredKeys);
     }
 }

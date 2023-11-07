@@ -1,7 +1,9 @@
 package edu.augustana;
 
+import com.opencsv.bean.CsvBindAndSplitByName;
 import com.opencsv.bean.CsvBindByName;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Card {
@@ -30,14 +32,14 @@ public class Card {
     @CsvBindByName(column = "Model Sex", required = true)
     private char modelSex;
 
-    @CsvBindByName(column = "Level", required = true)
-    private String level;
+    @CsvBindAndSplitByName(elementType = String.class, column = "Level", required = true)
+    private ArrayList<String> level;
 
-    @CsvBindByName(column = "Equipment", required = true)
-    private String equipment;
+    @CsvBindAndSplitByName(elementType = String.class, splitOn = "[,/]", column = "Equipment", required = true)
+    private ArrayList<String> equipment;
 
-    @CsvBindByName(column = "Keywords", required = true)
-    private String keyWords;
+    @CsvBindAndSplitByName(elementType = String.class, column = "Keywords", splitOn = "\\,", required = true)
+    private ArrayList<String> keyWords;
 
     public String getImage(){
         return image;
@@ -83,15 +85,15 @@ public class Card {
         return modelSex;
     }
 
-    public String getLevel() {
+    public ArrayList<String> getLevel() {
         return level;
     }
 
-    public String getEquipment() {
+    public ArrayList<String> getEquipment() {
         return equipment;
     }
 
-    public String getKeyWords() {
+    public ArrayList<String> getKeyWords() {
         return keyWords;
     }
 }

@@ -9,6 +9,6 @@ public class LevelFilter implements CardFilter{
     }
     @Override
     public boolean matches(Card candidate) {
-        return candidate.getLevel().equalsIgnoreCase(desiredLevel);
+        return candidate.getLevel().contains(desiredLevel) || candidate.getLevel().contains("ALL");
     }
 }
