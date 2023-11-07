@@ -2,6 +2,7 @@ package edu.augustana;
 
 import com.opencsv.bean.CsvBindByName;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class Card {
 
@@ -57,4 +58,40 @@ public class Card {
                 "Keyword: "+keyWords+"\n \n";
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+
+    public char getGender() {
+        return gender;
+    }
+
+    public char getModelSex() {
+        return modelSex;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public String getKeyWords() {
+        return keyWords;
+    }
 }

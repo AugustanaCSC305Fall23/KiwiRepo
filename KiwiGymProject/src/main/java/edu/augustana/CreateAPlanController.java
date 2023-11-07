@@ -1,24 +1,25 @@
 package edu.augustana;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.opencsv.bean.CsvToBeanBuilder;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class CreateAPlanController  implements Initializable{
     @FXML
@@ -34,7 +35,7 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private ChoiceBox<?> equipmentChoiceBox;
     @FXML
-    private ChoiceBox<?> eventChoiceBox;
+    private ChoiceBox<String> eventChoiceBox;
     @FXML
     private CheckBox favoritesCheckBox;
     @FXML
@@ -88,16 +89,13 @@ public class CreateAPlanController  implements Initializable{
 
                 cardGrid.add(pane, column++, row);
                 GridPane.setMargin(pane, new Insets(1));
-
-
-
-
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
+        
     }
 
     // Allows user to access the Menu page from the CreateAPlan page
@@ -107,21 +105,13 @@ public class CreateAPlanController  implements Initializable{
     }
 
     //Allows user to access the Filter page from the CreateAPlan page
-    @FXML
-    void switchToFilter(ActionEvent event) throws IOException{
-        GymnasticsApp.setRoot("Filter");
-    }
+
 
     @FXML
     private void switchToAddCard(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("addCard");
     }
 
-
-    @FXML
-    void modifyPlan(ActionEvent event) {
-
-    }
 
     @FXML
     void printPlan(ActionEvent event) {
