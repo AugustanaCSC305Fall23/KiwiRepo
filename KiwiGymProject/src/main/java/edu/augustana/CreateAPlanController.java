@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -43,6 +44,10 @@ public class CreateAPlanController  implements Initializable{
     private CheckBox maleCheckBox;
     @FXML
     private CheckBox neutralCheckBox;
+    @FXML
+    private TreeView<Plan> lessonPlanTreeView;
+    @FXML
+    private StackPane treeViewStackedPane;
     @FXML
     private ScrollBar scrollBar;
     @FXML
@@ -97,7 +102,17 @@ public class CreateAPlanController  implements Initializable{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
+        createTreeView();
+    }
+    @FXML
+    private void createTreeView() {
+        lessonPlanTreeView = new TreeView<>();
+        TreeItem<Plan> rootItem = new TreeItem<Plan>(new Plan("Week 1"));
+        lessonPlanTreeView.setRoot(rootItem);
+        rootItem.getChildren().add(new TreeItem<Plan>(new Plan("Plan 1")));
+        rootItem.setExpanded(true);
+        treeViewStackedPane.getChildren().add(lessonPlanTreeView);
+        lessonPlanTreeView.isEditable();
     }
 
     // Allows user to access the Menu page from the CreateAPlan page
