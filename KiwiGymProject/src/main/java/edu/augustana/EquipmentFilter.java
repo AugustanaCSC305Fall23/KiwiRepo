@@ -8,6 +8,6 @@ public class EquipmentFilter implements CardFilter{
     }
     @Override
     public boolean matches(Card candidate) {
-        return candidate.getEquipment().equalsIgnoreCase(desiredEquipment);
+        return candidate.getEquipment().contains(desiredEquipment);
     }
 }
