@@ -114,8 +114,8 @@ public class CreateAPlanController  implements Initializable{
 
 
     @FXML
-    void printPlan(ActionEvent event) {
-
+    void printPlan(ActionEvent event) throws IOException {
+        GymnasticsApp.setRoot("PrintView");
     }
     @FXML
     void savePlan(ActionEvent event) {

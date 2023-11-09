@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -121,23 +123,51 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </CheckBox>
-                  <Button fx:id="addCardBtn" mnemonicParsing="false" onAction="#switchToAddCard" text="Add New Card" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#switchToMain" text="Back" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Button fx:id="addCardBtn" mnemonicParsing="false" onAction="#switchToAddCard" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/new-document.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#switchToMain" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/back-button.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </GridPane>
-            <Button fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="2" GridPane.valignment="TOP">
+            <Button id="SaveButton" fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" GridPane.columnIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="75.0" top="25.0" />
                </GridPane.margin>
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/downloads.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="printPlanButton" mnemonicParsing="false" onAction="#printPlan" text="Print" GridPane.columnIndex="2" GridPane.valignment="TOP">
+            <Button id="PrintButton" fx:id="printPlanButton" mnemonicParsing="false" onAction="#printPlan" GridPane.columnIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="75.0" top="25.0" />
                </GridPane.margin>
+               <graphic>
+                  <ImageView fitHeight="18.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/printer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <content>
