@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 
 public class CreateAPlanController  implements Initializable{
     public Button addCardBtn;
+    @FXML
+    private Button searchButton;
     public CheckBox addedCardsCheckBox;
     //@FXML
     //private Button addCardBtn;
@@ -32,8 +34,6 @@ public class CreateAPlanController  implements Initializable{
     //private CheckBox addedCardsCheckBox;
     @FXML
     private Button backButton;
-    @FXML
-    private Button searchButton;
     @FXML
     private ChoiceBox<String> categoryChoiceBox;
     @FXML
