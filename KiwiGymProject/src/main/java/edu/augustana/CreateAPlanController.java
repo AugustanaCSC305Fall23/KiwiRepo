@@ -6,9 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,10 +24,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateAPlanController  implements Initializable{
-    @FXML
-    private Button addCardBtn;
-    @FXML
-    private CheckBox addedCardsCheckBox;
+    public Button addCardBtn;
+    public CheckBox addedCardsCheckBox;
+    //@FXML
+    //private Button addCardBtn;
+    //@FXML
+    //private CheckBox addedCardsCheckBox;
     @FXML
     private Button backButton;
     @FXML
@@ -46,9 +51,16 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private CheckBox neutralCheckBox;
     @FXML
+    private TreeView<String> lessonPlanTreeView;
+    @FXML
+    private StackPane treeViewStackedPane;
+    @FXML
+    private ScrollBar scrollBar;
+    @FXML
     private CheckBox maleModel;
     @FXML
     private CheckBox femaleModel;
+
     @FXML
     private TextField shortCodeTextBox;
     @FXML
@@ -64,9 +76,11 @@ public class CreateAPlanController  implements Initializable{
     List<CheckBox> modelCBList = new ArrayList<>();
     List<CardFilter> filterList = new ArrayList<>();
     private List<Card> cardBeans;
+    public TreeItem<String> weekOneItems;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+        createTreeView();
         //fileChooser.setTitle("Save");
         //fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
         try {
@@ -114,6 +128,15 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private void addCard(ActionEvent event) throws IOException {
 
+    }
+
+
+
+
+    @FXML
+    void savePlan(ActionEvent event) {
+        Stage stage = new Stage();
+        fileChooser.showSaveDialog(stage);
     }
 
     @FXML
@@ -257,6 +280,7 @@ public class CreateAPlanController  implements Initializable{
             throw new RuntimeException(e);
         }
 
+
         eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
 
     }
@@ -279,9 +303,35 @@ public class CreateAPlanController  implements Initializable{
     void printPlan(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("PrintView");
     }
+
     @FXML
-    void savePlan(ActionEvent event) {
-        Stage stage = new Stage();
-        fileChooser.showSaveDialog(stage);
+    private void createTreeView() {
+        Plan plan1 = new Plan("Plan 1");
+        PlanList.PlanList();
+        PlanList.addPlan(plan1);
+        ChoosePlanController.ChoosePlanController();
+        ChoosePlanController.addToChoiceBoxPlans(plan1);
+        TreeItem<String> rootItem = new TreeItem<String>("Week 1");
+        lessonPlanTreeView.setRoot(rootItem);
+        rootItem.getChildren().add(new TreeItem<String>(plan1.getName()));
+        rootItem.setExpanded(true);
+        weekOneItems = rootItem;
     }
+
+
+    public void addCardToTreeView(Card card){
+        TreeItem newCard = new TreeItem(card.getTitle());
+        weekOneItems.getChildren().add(newCard);
+    }
+    //@FXML
+    //private void switchToAddCard(ActionEvent event) throws IOException {
+    //    GymnasticsApp.setRoot("addCard");
+    //}
+
+
+    @FXML
+    void modifyPlan(ActionEvent event) {
+
+    }
+
 }

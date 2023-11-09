@@ -12,7 +12,8 @@
          <image>
             <Image url="@../../../../../../DEMO1Pack/DEMO1Pack/3.png" />
          </image></ImageView>
-      <Button fx:id="closeButton" layoutX="366.0" layoutY="520.0" mnemonicParsing="false" onAction="#closePopUp" text="Close" />
+      <Button fx:id="closeButton" layoutX="307.0" layoutY="520.0" mnemonicParsing="false" onAction="#closePopUp" text="Close" />
+      <Button fx:id="addToPlanButton" layoutX="419.0" layoutY="520.0" mnemonicParsing="false" onAction="#addToPlanButton" text="Add to plan" />
    </children>
    <padding>
       <Insets right="30.0" />

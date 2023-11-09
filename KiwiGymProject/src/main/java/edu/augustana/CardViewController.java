@@ -21,7 +21,6 @@ public class CardViewController {
 
 
     public void setImgView(Card card){
-
         //System.out.println("CardPacks/DEMO1Pack/"+card.getImage());
         Image cardImage = new Image("file:CardPacks/DEMO1Pack/"+card.getImage());
         this.cardImage.setImage(cardImage);

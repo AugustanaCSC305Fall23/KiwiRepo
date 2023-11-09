@@ -25,38 +25,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="createAPlan" onAction="#switchToSecondary" prefHeight="74.0" prefWidth="158.0" text="Create Plan" GridPane.columnSpan="2" GridPane.rowIndex="1">
-               <graphic>
-                  <ImageView fitHeight="58.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/edit.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
+            <Button fx:id="createAPlan" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchToSecondary" prefHeight="74.0" prefWidth="200.0" text="Create Plan" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <Label alignment="CENTER" ellipsisString="" prefHeight="55.0" prefWidth="943.0" text="Welcome to The Gymnastics Professor" textAlignment="CENTER" GridPane.columnSpan="3">
                <font>
                   <Font name="SansSerif Regular" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="createAPlan1" onAction="#switchToSecondary" prefHeight="75.0" prefWidth="173.0" text="Premade Plan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
-               <graphic>
-                  <ImageView fitHeight="67.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/planning.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="giveInformation" mnemonicParsing="false" onAction="#informationButton" prefHeight="29.0" prefWidth="32.0" GridPane.rowIndex="2">
+            <Button fx:id="createAPlan1" onAction="#switchToSecondary" prefHeight="75.0" prefWidth="200.0" text="Premade Plan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Button fx:id="giveInformation" mnemonicParsing="false" onAction="#informationButton" prefHeight="29.0" prefWidth="32.0" text="i" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="300.0" top="75.0" />
-               </GridPane.margin>
-               <graphic>
-                  <ImageView fitHeight="28.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/information.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
+               </GridPane.margin></Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
                   <Image url="@assets/logo.png" />
