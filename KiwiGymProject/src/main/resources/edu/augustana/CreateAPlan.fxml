@@ -27,7 +27,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Name of Current Plan" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <Label alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Current Plans" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets top="75.0" />
                </GridPane.margin>
@@ -43,9 +43,11 @@
               <rowConstraints>
                 <RowConstraints maxHeight="191.0" minHeight="0.0" prefHeight="62.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" valignment="CENTER" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -57,22 +59,22 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="maleCheckBox" mnemonicParsing="false" text="Male" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                  <CheckBox fx:id="femaleCheckBox" mnemonicParsing="false" text="Female" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <CheckBox fx:id="neutralCheckBox" mnemonicParsing="false" text="Neutral" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
-                  <Label text="Event" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <CheckBox fx:id="maleCheckBox" mnemonicParsing="false" onAction="#checkCbsMaleGend" text="M" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <CheckBox fx:id="femaleCheckBox" mnemonicParsing="false" onAction="#checkCBsFemaleGend" text="F" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="neutralCheckBox" mnemonicParsing="false" onAction="#checkCBsNeutralGend" text="N" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <Label text="Event" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="eventChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text="Difficulty" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <ChoiceBox fx:id="eventChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Difficulty" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="difficultyChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Short Code" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                  <ChoiceBox fx:id="difficultyChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label text="Short Code" GridPane.columnSpan="2" GridPane.rowIndex="6">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -80,18 +82,18 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="shortCodeTextBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="50.0" promptText="EX: H1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <TextField fx:id="shortCodeTextBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="50.0" promptText="EX: H1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Category" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Label text="Category" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ChoiceBox fx:id="categoryChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Favorites" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+                  <ChoiceBox fx:id="categoryChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Favorites" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="7">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -102,7 +104,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </CheckBox>
-                  <Label text="Equipment" GridPane.columnSpan="2" GridPane.rowIndex="7">
+                  <Label text="Equipment" GridPane.columnSpan="2" GridPane.rowIndex="8">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -110,12 +112,38 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <ChoiceBox fx:id="equipmentChioceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <ChoiceBox fx:id="equipmentChoiceBox" prefHeight="25.0" prefWidth="113.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Button fx:id="backButton" mnemonicParsing="false" onAction="#switchToMain" text="Back" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
+                  <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#search" text="Search" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <Label text="Model Gender" wrapText="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <CheckBox fx:id="maleModel" mnemonicParsing="false" onAction="#checkCBsMaleModel" text="M" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets bottom="5.0" top="10.0" />
+                     </GridPane.margin></CheckBox>
+                  <CheckBox fx:id="femaleModel" mnemonicParsing="false" onAction="#checkCBsFemaleModel" text="F" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="15.0" />
+                     </GridPane.margin></CheckBox>
+                  <Label text="Keyword" GridPane.rowIndex="9">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="15.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="keywordTextBox" promptText="Enter keyword" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
             <Button fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="2" GridPane.valignment="TOP">
@@ -137,9 +165,9 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <StackPane fx:id="treeViewStackedPane" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+            <StackPane fx:id="treeViewStackedPane" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="390.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <children>
-                  <TreeView fx:id="lessonPlanTreeView" editable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="275.0" style="-fx-font-size: 20;">
+                  <TreeView fx:id="lessonPlanTreeView" editable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="390.0" style="-fx-font-size: 30px;">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>

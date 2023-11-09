@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="popUpPane" prefHeight="564.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PopUpCardController">
+   <children>
+      <ImageView fx:id="popUpImageView" fitHeight="480.48" fitWidth="782.0" layoutX="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="40.0">
+         <image>
+            <Image url="@../../../../../../DEMO1Pack/DEMO1Pack/3.png" />
+         </image></ImageView>
+      <Button fx:id="closeButton" layoutX="307.0" layoutY="520.0" mnemonicParsing="false" onAction="#closePopUp" text="Close" />
+      <Button fx:id="addToPlanButton" layoutX="419.0" layoutY="520.0" mnemonicParsing="false" onAction="#addToPlanButton" text="Add to plan" />
+   </children>
+   <padding>
+      <Insets right="30.0" />
+   </padding>
+</AnchorPane>
