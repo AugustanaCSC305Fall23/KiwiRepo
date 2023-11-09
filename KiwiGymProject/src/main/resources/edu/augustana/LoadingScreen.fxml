@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ProgressBar?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="edu.augustana.LoadingScreen">
+    <ProgressBar fx:id="progressBar" />
+</StackPane>

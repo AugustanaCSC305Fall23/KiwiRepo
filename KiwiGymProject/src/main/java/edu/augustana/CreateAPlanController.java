@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateAPlanController  implements Initializable{
+    public Button addCardBtn;
+    public CheckBox addedCardsCheckBox;
     //@FXML
     //private Button addCardBtn;
     //@FXML
@@ -122,12 +124,6 @@ public class CreateAPlanController  implements Initializable{
         modelCBList.add(femaleModel);
     }
 
-    // Allows user to access the Menu page from the CreateAPlan page
-    @FXML
-    void switchToMain(ActionEvent event) throws IOException{
-        GymnasticsApp.setRoot("MenuPage");
-    }
-
 
     @FXML
     private void addCard(ActionEvent event) throws IOException {
@@ -135,15 +131,14 @@ public class CreateAPlanController  implements Initializable{
     }
 
 
-    @FXML
-    void printPlan(ActionEvent event) {
 
-    }
+
     @FXML
     void savePlan(ActionEvent event) {
         Stage stage = new Stage();
         fileChooser.showSaveDialog(stage);
     }
+
     @FXML
     void checkCBsFemaleGend(ActionEvent event){
         for (CheckBox checkBox: genderCBList){
@@ -285,7 +280,30 @@ public class CreateAPlanController  implements Initializable{
             throw new RuntimeException(e);
         }
 
+
+        eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
+        
     }
+
+    // Allows user to access the Menu page from the CreateAPlan page
+    @FXML
+    void switchToMain(ActionEvent event) throws IOException{
+        GymnasticsApp.setRoot("MenuPage");
+    }
+
+    //Allows user to access the Filter page from the CreateAPlan page
+
+    @FXML
+    private void switchToAddCard(ActionEvent event) throws IOException {
+        GymnasticsApp.setRoot("addCard");
+    }
+
+
+    @FXML
+    void printPlan(ActionEvent event) throws IOException {
+        GymnasticsApp.setRoot("PrintView");
+    }
+
     @FXML
     private void createTreeView() {
         Plan plan1 = new Plan("Plan 1");
@@ -299,6 +317,7 @@ public class CreateAPlanController  implements Initializable{
         rootItem.setExpanded(true);
         weekOneItems = rootItem;
     }
+
 
     public void addCardToTreeView(Card card){
         TreeItem newCard = new TreeItem(card.getTitle());

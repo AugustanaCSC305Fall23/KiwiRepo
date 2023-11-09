@@ -16,4 +16,5 @@ public class AddCardController {
     private void backFromCreateCardAction(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("CreateAPlan");
     }
+
 }
