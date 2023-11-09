@@ -92,7 +92,7 @@ public class CreateAPlanController  implements Initializable{
 
         //Fix this at some point
         equipmentChoiceBox.getItems().add("ALL");
-        
+
         for (Card card : cardBeans){
             if (!eventChoiceBox.getItems().contains(card.getEvent())){
                 eventChoiceBox.getItems().add(card.getEvent());
@@ -195,15 +195,21 @@ public class CreateAPlanController  implements Initializable{
         CardFilter filter;
         if (checkIfMultiple()){
             filter = new CombinedFilter(filterList);
-        } else {
-            filter = filterList.get(0);
-        }
-        for (Card card : cardBeans){
-            if (filter.matches(card)){
-                validCards.add(card);
+            for (Card card : cardBeans){
+                if (filter.matches(card)){
+                    validCards.add(card);
+                }
             }
+        } else if (!filterList.isEmpty()){
+            filter = filterList.get(0);
+            for (Card card : cardBeans){
+                if (filter.matches(card)){
+                    validCards.add(card);
+                }
+            }
+        } else {
+            validCards.addAll(cardBeans);
         }
-
 
         displayCards(validCards);
         filterList.clear();
