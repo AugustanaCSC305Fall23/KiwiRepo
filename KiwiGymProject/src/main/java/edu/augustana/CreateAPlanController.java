@@ -242,12 +242,12 @@ public class CreateAPlanController  implements Initializable{
                 fxmlLoader.setLocation(getClass().getResource("card.fxml"));
                 Pane pane = fxmlLoader.load();
                 CardViewController cardController = fxmlLoader.getController();
-                cardController.setImgView(cardBean);
+            cardController.setImgView(cardBean);
 
-                if(column == 3){
-                    column = 0;
-                    row += 1;
-                }
+            if(column == 3){
+                column = 0;
+                row += 1;
+            }
 
                 cardGrid.add(pane, column++, row);
                 GridPane.setMargin(pane, new Insets(1));
@@ -258,7 +258,7 @@ public class CreateAPlanController  implements Initializable{
         }
 
         eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
-        
+
     }
 
     // Allows user to access the Menu page from the CreateAPlan page
