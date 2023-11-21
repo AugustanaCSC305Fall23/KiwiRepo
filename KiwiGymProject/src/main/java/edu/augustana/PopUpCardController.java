@@ -1,4 +1,4 @@
-package edu.augustana.cards;
+package edu.augustana;
 
 import edu.augustana.ChoosePlanController;
 import edu.augustana.cards.Card;
