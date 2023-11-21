@@ -7,4 +7,8 @@ module edu.augustana {
 
     opens edu.augustana;
     exports edu.augustana;
+    exports edu.augustana.cards;
+    opens edu.augustana.cards;
+    exports edu.augustana.filters;
+    opens edu.augustana.filters;
 }

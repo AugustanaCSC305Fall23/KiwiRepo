@@ -1,13 +1,13 @@
 package edu.augustana;
 
 import com.opencsv.bean.CsvToBeanBuilder;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -122,15 +122,6 @@ public class CreateAPlanController  implements Initializable{
         modelCBList.add(maleModel);
         modelCBList.add(femaleModel);
     }
-
-
-    @FXML
-    private void addCard(ActionEvent event) throws IOException {
-
-    }
-
-
-
 
     @FXML
     void savePlan(ActionEvent event) {
@@ -326,7 +317,10 @@ public class CreateAPlanController  implements Initializable{
     //private void switchToAddCard(ActionEvent event) throws IOException {
     //    GymnasticsApp.setRoot("addCard");
     //}
+    @FXML
+    private void addCard(ActionEvent event) throws IOException {
 
+    }
 
     @FXML
     void modifyPlan(ActionEvent event) {

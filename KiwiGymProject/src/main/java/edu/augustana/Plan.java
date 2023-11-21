@@ -1,5 +1,7 @@
 package edu.augustana;
 
+import edu.augustana.cards.Card;
+
 import java.util.ArrayList;
 import java.util.List;
 
