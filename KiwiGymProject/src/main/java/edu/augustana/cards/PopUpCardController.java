@@ -1,5 +1,7 @@
-package edu.augustana;
+package edu.augustana.cards;
 
+import edu.augustana.ChoosePlanController;
+import edu.augustana.cards.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

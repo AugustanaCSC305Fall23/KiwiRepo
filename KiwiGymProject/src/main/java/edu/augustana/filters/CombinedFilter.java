@@ -1,9 +1,12 @@
-package edu.augustana;
+package edu.augustana.filters;
+
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombinedFilter implements CardFilter{
+public class CombinedFilter implements CardFilter {
 
     private List<CardFilter> filters = new ArrayList<>();
 

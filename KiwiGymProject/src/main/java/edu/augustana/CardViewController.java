@@ -1,5 +1,7 @@
 package edu.augustana;
 
+import edu.augustana.cards.Card;
+import edu.augustana.cards.PopUpCardController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

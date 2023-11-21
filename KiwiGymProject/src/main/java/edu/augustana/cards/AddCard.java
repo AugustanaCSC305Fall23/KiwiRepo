@@ -1,4 +1,4 @@
-package edu.augustana;
+package edu.augustana.cards;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
