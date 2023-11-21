@@ -130,7 +130,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="19.0" prefWidth="21.0" text="Search" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="19.0" text="Search" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <graphic>
                </graphic>
             </Button>

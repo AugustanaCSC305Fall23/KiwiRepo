@@ -111,7 +111,6 @@ public class CreateAPlanController  implements Initializable{
          }
         //Fix this at some point
         eventChoiceBox.getItems().remove("Uneven bars");
-
         difficultyChoiceBox.getItems().addAll("ALL", "B", "AB", "I", "A");
         eventChoiceBox.setValue("ALL");
         difficultyChoiceBox.setValue("ALL");
@@ -281,7 +280,7 @@ public class CreateAPlanController  implements Initializable{
         }
 
 
-        eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
+
 
     }
 
