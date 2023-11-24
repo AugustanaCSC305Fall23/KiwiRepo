@@ -1,9 +1,9 @@
-package edu.augustana;
+package edu.augustana.filters;
 
-import java.util.ArrayList;
-import java.util.List;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
 
-public class KeyWordFilter implements CardFilter{
+public class KeyWordFilter implements CardFilter {
     private String desiredKeys;
 
     public KeyWordFilter(String desiredKeys){

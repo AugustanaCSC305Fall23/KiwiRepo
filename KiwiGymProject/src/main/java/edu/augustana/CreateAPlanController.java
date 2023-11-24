@@ -1,13 +1,13 @@
 package edu.augustana;
 
 import com.opencsv.bean.CsvToBeanBuilder;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
 
 public class CreateAPlanController  implements Initializable{
     public Button addCardBtn;
+    @FXML
+    private Button searchButton;
     public CheckBox addedCardsCheckBox;
     //@FXML
     //private Button addCardBtn;
@@ -32,8 +34,6 @@ public class CreateAPlanController  implements Initializable{
     //private CheckBox addedCardsCheckBox;
     @FXML
     private Button backButton;
-    @FXML
-    private Button searchButton;
     @FXML
     private ChoiceBox<String> categoryChoiceBox;
     @FXML
@@ -111,7 +111,6 @@ public class CreateAPlanController  implements Initializable{
          }
         //Fix this at some point
         eventChoiceBox.getItems().remove("Uneven bars");
-
         difficultyChoiceBox.getItems().addAll("ALL", "B", "AB", "I", "A");
         eventChoiceBox.setValue("ALL");
         difficultyChoiceBox.setValue("ALL");
@@ -123,15 +122,6 @@ public class CreateAPlanController  implements Initializable{
         modelCBList.add(maleModel);
         modelCBList.add(femaleModel);
     }
-
-
-    @FXML
-    private void addCard(ActionEvent event) throws IOException {
-
-    }
-
-
-
 
     @FXML
     void savePlan(ActionEvent event) {
@@ -281,7 +271,7 @@ public class CreateAPlanController  implements Initializable{
         }
 
 
-        eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
+
 
     }
 
@@ -327,7 +317,10 @@ public class CreateAPlanController  implements Initializable{
     //private void switchToAddCard(ActionEvent event) throws IOException {
     //    GymnasticsApp.setRoot("addCard");
     //}
+    @FXML
+    private void addCard(ActionEvent event) throws IOException {
 
+    }
 
     @FXML
     void modifyPlan(ActionEvent event) {

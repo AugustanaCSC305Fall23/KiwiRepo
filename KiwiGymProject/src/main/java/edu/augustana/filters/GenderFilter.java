@@ -1,6 +1,9 @@
-package edu.augustana;
+package edu.augustana.filters;
 
-public class GenderFilter implements CardFilter{
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
+
+public class GenderFilter implements CardFilter {
     private char desiredGender;
 
     public GenderFilter(char desiredGender){
