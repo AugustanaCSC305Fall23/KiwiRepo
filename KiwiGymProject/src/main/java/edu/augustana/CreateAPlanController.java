@@ -81,8 +81,6 @@ public class CreateAPlanController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         createTreeView();
-        //fileChooser.setTitle("Save");
-        //fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
         try {
             cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/DEMO1.csv")).withType(Card.class).build().parse();
         } catch (FileNotFoundException e) {
@@ -90,7 +88,6 @@ public class CreateAPlanController  implements Initializable{
         }
 
         displayCards(cardBeans);
-        //Find way to read cards and insert these values in automatically
 
         //Fix this at some point
         equipmentChoiceBox.getItems().add("ALL");
@@ -195,7 +192,6 @@ public class CreateAPlanController  implements Initializable{
         } else {
             validCards.addAll(cardBeans);
         }
-
         displayCards(validCards);
         filterList.clear();
         validCards.clear();
@@ -261,18 +257,12 @@ public class CreateAPlanController  implements Initializable{
                 column = 0;
                 row += 1;
             }
-
                 cardGrid.add(pane, column++, row);
                 GridPane.setMargin(pane, new Insets(1));
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
     }
 
     // Allows user to access the Menu page from the CreateAPlan page
@@ -282,7 +272,6 @@ public class CreateAPlanController  implements Initializable{
     }
 
     //Allows user to access the Filter page from the CreateAPlan page
-
     @FXML
     private void switchToAddCard(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("addCard");
@@ -317,14 +306,6 @@ public class CreateAPlanController  implements Initializable{
     //private void switchToAddCard(ActionEvent event) throws IOException {
     //    GymnasticsApp.setRoot("addCard");
     //}
-    @FXML
-    private void addCard(ActionEvent event) throws IOException {
 
-    }
-
-    @FXML
-    void modifyPlan(ActionEvent event) {
-
-    }
 
 }

@@ -4,7 +4,7 @@ import edu.augustana.cards.Card;
 import edu.augustana.filters.CardFilter;
 
 public class KeyWordFilter implements CardFilter {
-    private String desiredKeys;
+    private final String desiredKeys;
 
     public KeyWordFilter(String desiredKeys){
         this.desiredKeys = desiredKeys;

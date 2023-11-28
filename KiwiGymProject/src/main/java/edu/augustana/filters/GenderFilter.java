@@ -4,7 +4,7 @@ import edu.augustana.cards.Card;
 import edu.augustana.filters.CardFilter;
 
 public class GenderFilter implements CardFilter {
-    private char desiredGender;
+    private final char desiredGender;
 
     public GenderFilter(char desiredGender){
         this.desiredGender = desiredGender;

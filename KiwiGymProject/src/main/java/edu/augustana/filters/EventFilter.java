@@ -4,7 +4,7 @@ import edu.augustana.cards.Card;
 import edu.augustana.filters.CardFilter;
 
 public class EventFilter implements CardFilter {
-    private String desiredEvent;
+    private final String desiredEvent;
 
     public EventFilter(String desiredEvent){
         this.desiredEvent = desiredEvent;

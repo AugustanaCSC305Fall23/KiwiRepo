@@ -4,7 +4,7 @@ import edu.augustana.cards.Card;
 import edu.augustana.filters.CardFilter;
 
 public class TitleFilter implements CardFilter {
-    private String desiredTitle;
+    private final String desiredTitle;
 
     public TitleFilter(String desiredTitle){
         this.desiredTitle = desiredTitle;

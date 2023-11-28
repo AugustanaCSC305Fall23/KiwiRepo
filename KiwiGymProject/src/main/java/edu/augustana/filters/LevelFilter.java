@@ -5,7 +5,7 @@ import edu.augustana.filters.CardFilter;
 
 public class LevelFilter implements CardFilter {
 
-    String desiredLevel;
+    private final String desiredLevel;
 
     public LevelFilter(String desiredLevel){
         this.desiredLevel = desiredLevel;

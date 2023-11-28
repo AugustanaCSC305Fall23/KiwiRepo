@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CombinedFilter implements CardFilter {
 
-    private List<CardFilter> filters = new ArrayList<>();
+    private final List<CardFilter> filters = new ArrayList<>();
 
     public CombinedFilter(List<CardFilter> filters){
         this.filters.addAll(filters);
