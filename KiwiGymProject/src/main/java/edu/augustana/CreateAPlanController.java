@@ -118,7 +118,6 @@ public class CreateAPlanController  implements Initializable{
         equipmentChoiceBox.setValue("ALL");
         genderCBList.add(femaleCheckBox);
         genderCBList.add(maleCheckBox);
-        genderCBList.add(neutralCheckBox);
         modelCBList.add(maleModel);
         modelCBList.add(femaleModel);
     }
@@ -142,15 +141,6 @@ public class CreateAPlanController  implements Initializable{
     void checkCbsMaleGend(ActionEvent event){
         for (CheckBox checkBox: genderCBList){
             if (!checkBox.equals(maleCheckBox) && checkBox.isSelected()){
-                checkBox.setSelected(false);
-            }
-        }
-    }
-
-    @FXML
-    void checkCBsNeutralGend(ActionEvent event){
-        for (CheckBox checkBox: genderCBList){
-            if (!checkBox.equals(neutralCheckBox) && checkBox.isSelected()){
                 checkBox.setSelected(false);
             }
         }
