@@ -64,7 +64,7 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private TextField shortCodeTextBox;
     @FXML
-    private TextField keywordTextBox;
+    private TextField superSearchTextBox;
     @FXML
     private Button printPlanButton;
     @FXML
@@ -188,6 +188,7 @@ public class CreateAPlanController  implements Initializable{
         } else if (!filterList.isEmpty()){
             filter = filterList.get(0);
             for (Card card : cardBeans){
+                System.out.println(filter.matches(card));
                 if (filter.matches(card)){
                     validCards.add(card);
                 }
@@ -234,9 +235,9 @@ public class CreateAPlanController  implements Initializable{
             numFilters++;
             filterList.add(new CodeFilter(shortCodeTextBox.getText()));
         }
-        if (!keywordTextBox.getText().isEmpty()){
+        if (!superSearchTextBox.getText().isEmpty()){
             numFilters++;
-            filterList.add(new KeyWordFilter(keywordTextBox.getText()));
+            filterList.add(new SuperSearchFilter(superSearchTextBox.getText()));
         }
         return numFilters > 1;
     }
