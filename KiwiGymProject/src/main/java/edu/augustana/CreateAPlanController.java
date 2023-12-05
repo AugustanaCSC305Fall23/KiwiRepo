@@ -76,7 +76,10 @@ public class CreateAPlanController  implements Initializable{
     List<CheckBox> modelCBList = new ArrayList<>();
     List<CardFilter> filterList = new ArrayList<>();
     private List<Card> cardBeans;
-    public TreeItem<String> weekOneItems;
+    public static TreeItem<String> courseItems;
+    public Course course;
+    public static Plan currentPlan;
+    public ChoosePlanController choosePlanController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -285,22 +288,24 @@ public class CreateAPlanController  implements Initializable{
 
     @FXML
     private void createTreeView() {
-        Plan plan1 = new Plan("Plan 1");
-        PlanList.PlanList();
-        PlanList.addPlan(plan1);
-        ChoosePlanController.ChoosePlanController();
-        ChoosePlanController.addToChoiceBoxPlans(plan1);
-        TreeItem<String> rootItem = new TreeItem<String>("Week 1");
+        this.course =  new Course("Course 1");
+        currentPlan = new Plan("Plan 1");
+        course.addPlan(currentPlan);
+        this.choosePlanController = new ChoosePlanController();
+        this.choosePlanController.addToChoiceBoxPlans(currentPlan);
+        TreeItem<String> rootItem = new TreeItem<String>(course.getName());
         lessonPlanTreeView.setRoot(rootItem);
-        rootItem.getChildren().add(new TreeItem<String>(plan1.getName()));
+        rootItem.getChildren().add(new TreeItem<String>(currentPlan.getName()));
         rootItem.setExpanded(true);
-        weekOneItems = rootItem;
+        courseItems = rootItem;
     }
 
 
-    public void addCardToTreeView(Card card){
-        TreeItem newCard = new TreeItem(card.getTitle());
-        weekOneItems.getChildren().add(newCard);
+    public static void addCardToTreeView(Card card){
+        if (currentPlan.getEvent().contains(card.getEvent())) {
+            TreeItem newCard = new TreeItem(card.getTitle());
+            courseItems.getChildren().add(newCard);
+        }
     }
     //@FXML
     //private void switchToAddCard(ActionEvent event) throws IOException {
