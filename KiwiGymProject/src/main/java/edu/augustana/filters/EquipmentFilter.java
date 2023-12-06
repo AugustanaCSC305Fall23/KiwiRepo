@@ -1,7 +1,10 @@
-package edu.augustana;
+package edu.augustana.filters;
 
-public class EquipmentFilter implements CardFilter{
-    private String desiredEquipment;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
+
+public class EquipmentFilter implements CardFilter {
+    private final String desiredEquipment;
 
     public EquipmentFilter(String desiredEquipment){
         this.desiredEquipment = desiredEquipment;

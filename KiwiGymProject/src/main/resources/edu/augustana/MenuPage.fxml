@@ -25,13 +25,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="createAPlan" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchToSecondary" prefHeight="74.0" prefWidth="200.0" text="Create Plan" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Button fx:id="createAPlan" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#switchToCreateAPlan" prefHeight="74.0" prefWidth="200.0" text="Create Plan" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <Label alignment="CENTER" ellipsisString="" prefHeight="55.0" prefWidth="943.0" text="Welcome to The Gymnastics Professor" textAlignment="CENTER" GridPane.columnSpan="3">
                <font>
                   <Font name="SansSerif Regular" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="createAPlan1" onAction="#switchToSecondary" prefHeight="75.0" prefWidth="200.0" text="Premade Plan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+            <Button fx:id="loadPlan" prefHeight="75.0" prefWidth="200.0" text="Load Plan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" onAction="#setLoadPlan"/>
             <Button fx:id="giveInformation" mnemonicParsing="false" onAction="#informationButton" prefHeight="29.0" prefWidth="32.0" text="i" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="300.0" top="75.0" />

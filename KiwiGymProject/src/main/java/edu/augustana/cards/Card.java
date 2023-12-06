@@ -1,4 +1,4 @@
-package edu.augustana;
+package edu.augustana.cards;
 
 import com.opencsv.bean.CsvBindAndSplitByName;
 import com.opencsv.bean.CsvBindByName;
@@ -99,4 +99,6 @@ public class Card {
     public ArrayList<String> getKeyWords() {
         return keyWords;
     }
+
+
 }

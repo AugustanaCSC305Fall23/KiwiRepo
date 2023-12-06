@@ -1,20 +1,21 @@
 package edu.augustana;
 
 import com.opencsv.bean.CsvToBeanBuilder;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private TextField shortCodeTextBox;
     @FXML
-    private TextField keywordTextBox;
+    private TextField superSearchTextBox;
     @FXML
     private Button printPlanButton;
     @FXML
@@ -76,14 +77,15 @@ public class CreateAPlanController  implements Initializable{
     List<CheckBox> modelCBList = new ArrayList<>();
     List<CardFilter> filterList = new ArrayList<>();
     private List<Card> cardBeans;
-    public TreeItem<String> weekOneItems;
+    public static TreeItem<String> courseItems;
+    public Course course;
+    public static Plan currentPlan;
+    public ChoosePlanController choosePlanController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         createTreeView();
-        //List<Card> demoTwoCards;
-        //fileChooser.setTitle("Save");
-        //fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*"));
+
         try {
             cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/Demo1/Demo1.csv")).withType(Card.class).build().parse();
             cardBeans.addAll(new CsvToBeanBuilder(new FileReader("CardPacks/Demo2/Demo2.csv")).withType(Card.class).build().parse());
@@ -94,7 +96,6 @@ public class CreateAPlanController  implements Initializable{
         }
 
         displayCards(cardBeans);
-        //Find way to read cards and insert these values in automatically
 
         //Fix this at some point
         equipmentChoiceBox.getItems().add("ALL");
@@ -115,7 +116,6 @@ public class CreateAPlanController  implements Initializable{
          }
         //Fix this at some point
         eventChoiceBox.getItems().remove("Uneven bars");
-
         difficultyChoiceBox.getItems().addAll("ALL", "B", "AB", "I", "A");
         eventChoiceBox.setValue("ALL");
         difficultyChoiceBox.setValue("ALL");
@@ -128,19 +128,42 @@ public class CreateAPlanController  implements Initializable{
         modelCBList.add(femaleModel);
     }
 
-
-    @FXML
-    private void addCard(ActionEvent event) throws IOException {
-
-    }
-
-
-
-
     @FXML
     void savePlan(ActionEvent event) {
-        Stage stage = new Stage();
-        fileChooser.showSaveDialog(stage);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save" + course.getName());
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("GymProfCourse (*.GymProfCourse)", "*.GymCourse");
+        fileChooser.getExtensionFilters().add(filter);
+        Window mainWindow = lessonPlanTreeView.getScene().getWindow();
+        File chosenFile = fileChooser.showSaveDialog(mainWindow);
+        saveCurrentCourseToFile(chosenFile);
+    }
+    @FXML
+    public static void loadPlan(File chosenFile){
+        if (chosenFile != null) {
+            try {
+                GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
+                courseItems.getChildren().clear();
+                Course loadedLog = GymnasticsApp.getCurrentCourse();
+                for(Plan plan : loadedLog.getPlanList()){
+                    for (Card card : plan.getCardList()){
+                        TreeItem newCard = new TreeItem(card.getTitle());
+                        courseItems.getChildren().add(newCard);
+                    }
+                }
+            } catch (IOException ex) {
+                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
+            }
+        }
+    }
+    private void saveCurrentCourseToFile(File chosenFile) {
+        if (chosenFile != null) {
+            try {
+                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
+            }
+        }
     }
 
     @FXML
@@ -202,6 +225,7 @@ public class CreateAPlanController  implements Initializable{
         } else if (!filterList.isEmpty()){
             filter = filterList.get(0);
             for (Card card : cardBeans){
+                System.out.println(filter.matches(card));
                 if (filter.matches(card)){
                     validCards.add(card);
                 }
@@ -209,7 +233,6 @@ public class CreateAPlanController  implements Initializable{
         } else {
             validCards.addAll(cardBeans);
         }
-
         displayCards(validCards);
         filterList.clear();
         validCards.clear();
@@ -249,9 +272,9 @@ public class CreateAPlanController  implements Initializable{
             numFilters++;
             filterList.add(new CodeFilter(shortCodeTextBox.getText()));
         }
-        if (!keywordTextBox.getText().isEmpty()){
+        if (!superSearchTextBox.getText().isEmpty()){
             numFilters++;
-            filterList.add(new KeyWordFilter(keywordTextBox.getText()));
+            filterList.add(new SuperSearchFilter(superSearchTextBox.getText()));
         }
         return numFilters > 1;
     }
@@ -275,18 +298,12 @@ public class CreateAPlanController  implements Initializable{
                 column = 0;
                 row += 1;
             }
-
                 cardGrid.add(pane, column++, row);
                 GridPane.setMargin(pane, new Insets(1));
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-        eventChoiceBox.getItems().addAll("ALL", "Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength");
-
     }
 
     // Allows user to access the Menu page from the CreateAPlan page
@@ -296,7 +313,6 @@ public class CreateAPlanController  implements Initializable{
     }
 
     //Allows user to access the Filter page from the CreateAPlan page
-
     @FXML
     private void switchToAddCard(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("addCard");
@@ -310,32 +326,29 @@ public class CreateAPlanController  implements Initializable{
 
     @FXML
     private void createTreeView() {
-        Plan plan1 = new Plan("Plan 1");
-        PlanList.PlanList();
-        PlanList.addPlan(plan1);
-        ChoosePlanController.ChoosePlanController();
-        ChoosePlanController.addToChoiceBoxPlans(plan1);
-        TreeItem<String> rootItem = new TreeItem<String>("Week 1");
+        this.course =  new Course("Course 1");
+        currentPlan = new Plan("Plan 1");
+        course.addPlan(currentPlan);
+        this.choosePlanController = new ChoosePlanController();
+        this.choosePlanController.addToChoiceBoxPlans(currentPlan);
+        TreeItem<String> rootItem = new TreeItem<String>(course.getName());
         lessonPlanTreeView.setRoot(rootItem);
-        rootItem.getChildren().add(new TreeItem<String>(plan1.getName()));
+        rootItem.getChildren().add(new TreeItem<String>(currentPlan.getName()));
         rootItem.setExpanded(true);
-        weekOneItems = rootItem;
+        courseItems = rootItem;
     }
 
 
-    public void addCardToTreeView(Card card){
-        TreeItem newCard = new TreeItem(card.getTitle());
-        weekOneItems.getChildren().add(newCard);
+    public static void addCardToTreeView(Card card){
+        if (currentPlan.getEvent().contains(card.getEvent())) {
+            TreeItem newCard = new TreeItem(card.getTitle());
+            courseItems.getChildren().add(newCard);
+        }
     }
     //@FXML
     //private void switchToAddCard(ActionEvent event) throws IOException {
     //    GymnasticsApp.setRoot("addCard");
     //}
 
-
-    @FXML
-    void modifyPlan(ActionEvent event) {
-
-    }
 
 }

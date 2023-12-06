@@ -1,16 +1,13 @@
 package edu.augustana;
 
+import edu.augustana.cards.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
-import edu.augustana.CreateAPlanController;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChoosePlanController {
@@ -19,12 +16,11 @@ public class ChoosePlanController {
     @FXML
     private Button finishAddToPlanButton;
     @FXML
-    private static List<Plan> choiceBoxPlans;
+    private List<Plan> choiceBoxPlans;
     private Card cardToAdd;
     private Stage stage;
-    @FXML
-    public static void ChoosePlanController() {
-        choiceBoxPlans = new ArrayList<>();
+    public ChoosePlanController() {
+        choiceBoxPlans = Course.getPlanList();
     }
     @FXML
     public void initialize(){
@@ -32,7 +28,7 @@ public class ChoosePlanController {
     }
 
     @FXML
-    public static void addToChoiceBoxPlans(Plan plan){
+    public void addToChoiceBoxPlans(Plan plan){
         choiceBoxPlans.add(plan);
     }
     @FXML
@@ -56,8 +52,7 @@ public class ChoosePlanController {
             }
         }
         planAddedTo.addCard(cardToAdd);
-        CreateAPlanController controller = new CreateAPlanController();
-        //controller.addCardToTreeView(cardToAdd);
+        CreateAPlanController.addCardToTreeView(cardToAdd);
         finishAddToPlanButton.getScene().getWindow().hide();
 
     }

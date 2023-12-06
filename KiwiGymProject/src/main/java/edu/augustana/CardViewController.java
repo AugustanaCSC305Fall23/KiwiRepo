@@ -1,15 +1,11 @@
 package edu.augustana;
 
+import edu.augustana.cards.Card;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 
 public class CardViewController {
 
@@ -19,12 +15,32 @@ public class CardViewController {
     @FXML
     private VBox cardVBox;
 
+    //private static final String CARD_IMAGE_PATH = "CardPacks/DEMO1Pack/";
 
-    public void setImgView(Card card){
-        //System.out.println("CardPacks/DEMO1Pack/"+card.getImage());
+    public void setImgView(Card card) {
+        try {
+            displayThumbnailImage(card);
+            setCardVBoxClickListener(card);
+        } catch (Exception e) {
+            handleException(e);
+        }
+
+
+    }
+
+    private void setCardVBoxClickListener(Card card) {
+        cardVBox.setOnMouseClicked(e -> PopupLoader.cardPopupWindow(card));
+    }
+
+    private void handleException(Exception e) {
+        PopupLoader.handleException(e);
+    }
+
+    private void displayThumbnailImage(Card card) {
         StringBuilder thumbNail = new StringBuilder();
-        for(char c: card.getImage().toCharArray()){
-            if(Character.isDigit(c)){
+
+        for (char c : card.getImage().toCharArray()) {
+            if (Character.isDigit(c)) {
                 thumbNail.append(c);
             }
         }
@@ -32,33 +48,8 @@ public class CardViewController {
         thumbNail.append(".jpg");
 
 
-        Image cardImage = new Image("file:CardPacks/"+ card.getPackFolder()+"/thumbs/"+thumbNail);
-        System.out.println("ThumbNail: "+thumbNail);
-        System.out.println(card.getImage());
-        System.out.println(card.getPackFolder());
+        Image cardImage = new Image("file:CardPacks/" + card.getPackFolder() + "/thumbs/" + thumbNail);
+
         this.cardImage.setImage(cardImage);
-
-        cardVBox.setOnMouseClicked(e -> {
-            try {
-                cardPopupWindow(card);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
     }
-
-    public void cardPopupWindow(Card card) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(PopUpCardController.class.getResource("PopUpCard.fxml"));
-        Parent root = fxmlLoader.load();
-        PopUpCardController controller = fxmlLoader.getController();
-        controller.setCardToShow(card);
-        Scene popupScene = new Scene(root);
-
-        // make new stage and set the scene to popupScene, and showAndWait the stage
-        Stage stage1 = new Stage();
-        stage1.setScene(popupScene);
-        stage1.showAndWait();
-    }
-
 }

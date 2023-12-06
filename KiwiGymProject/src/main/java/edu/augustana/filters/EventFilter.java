@@ -1,7 +1,10 @@
-package edu.augustana;
+package edu.augustana.filters;
 
-public class EventFilter implements CardFilter{
-    private String desiredEvent;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
+
+public class EventFilter implements CardFilter {
+    private final String desiredEvent;
 
     public EventFilter(String desiredEvent){
         this.desiredEvent = desiredEvent;

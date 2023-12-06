@@ -1,7 +1,10 @@
-package edu.augustana;
+package edu.augustana.filters;
 
-public class ModelFilter implements CardFilter{
-    private char desiredModel;
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
+
+public class ModelFilter implements CardFilter {
+    private final char desiredModel;
 
     public ModelFilter(char desiredModel){
         this.desiredModel = desiredModel;

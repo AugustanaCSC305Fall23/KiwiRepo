@@ -1,8 +1,11 @@
-package edu.augustana;
+package edu.augustana.filters;
 
-public class LevelFilter implements CardFilter{
+import edu.augustana.cards.Card;
+import edu.augustana.filters.CardFilter;
 
-    String desiredLevel;
+public class LevelFilter implements CardFilter {
+
+    private final String desiredLevel;
 
     public LevelFilter(String desiredLevel){
         this.desiredLevel = desiredLevel;

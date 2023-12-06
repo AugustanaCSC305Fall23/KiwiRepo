@@ -130,11 +130,11 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="19.0" prefWidth="21.0" text="Search" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="19.0" text="Search" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <graphic>
                </graphic>
             </Button>
-            <Label text="Model Gender" GridPane.rowIndex="2">
+            <Label text="Model Gender" wrapText="true" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -164,12 +164,12 @@
 <!--                      GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM"/>-->
 <!--            <CheckBox fx:id="maleModel" mnemonicParsing="false" onAction="#checkCBsMaleModel" text="M"-->
 <!--                      GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>-->
-            <Label text="Keyword" GridPane.rowIndex="10">
+            <Label text="Search;" GridPane.rowIndex="10">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="keywordTextBox" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <TextField fx:id="superSearchTextBox" GridPane.columnIndex="1" GridPane.rowIndex="10" />
          </GridPane>
          <Button id="SaveButton" fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="2" GridPane.valignment="TOP">
             <GridPane.margin>
