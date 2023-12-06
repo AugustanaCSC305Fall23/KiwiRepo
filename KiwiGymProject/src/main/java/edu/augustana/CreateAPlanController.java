@@ -13,8 +13,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -125,8 +126,40 @@ public class CreateAPlanController  implements Initializable{
 
     @FXML
     void savePlan(ActionEvent event) {
-        Stage stage = new Stage();
-        fileChooser.showSaveDialog(stage);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save" + course.getName());
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("GymProfCourse (*.GymProfCourse)", "*.GymCourse");
+        fileChooser.getExtensionFilters().add(filter);
+        Window mainWindow = lessonPlanTreeView.getScene().getWindow();
+        File chosenFile = fileChooser.showSaveDialog(mainWindow);
+        saveCurrentCourseToFile(chosenFile);
+    }
+    @FXML
+    public static void loadPlan(File chosenFile){
+        if (chosenFile != null) {
+            try {
+                GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
+                courseItems.getChildren().clear();
+                Course loadedLog = GymnasticsApp.getCurrentCourse();
+                for(Plan plan : loadedLog.getPlanList()){
+                    for (Card card : plan.getCardList()){
+                        TreeItem newCard = new TreeItem(card.getTitle());
+                        courseItems.getChildren().add(newCard);
+                    }
+                }
+            } catch (IOException ex) {
+                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
+            }
+        }
+    }
+    private void saveCurrentCourseToFile(File chosenFile) {
+        if (chosenFile != null) {
+            try {
+                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
+            } catch (IOException e) {
+                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
+            }
+        }
     }
 
     @FXML

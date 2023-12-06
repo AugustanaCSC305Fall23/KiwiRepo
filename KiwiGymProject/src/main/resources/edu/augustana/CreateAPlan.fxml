@@ -134,7 +134,7 @@
                <graphic>
                </graphic>
             </Button>
-            <Label text="Model Gender" GridPane.rowIndex="2">
+            <Label text="Model Gender" wrapText="true" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

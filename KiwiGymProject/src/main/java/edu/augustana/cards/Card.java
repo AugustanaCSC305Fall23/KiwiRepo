@@ -96,4 +96,6 @@ public class Card {
     public ArrayList<String> getKeyWords() {
         return keyWords;
     }
+
+
 }
