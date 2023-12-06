@@ -76,6 +76,9 @@ public class Card {
         return title;
     }
 
+    public String getPackFolder() {
+        return packFolder;
+    }
 
     public char getGender() {
         return gender;

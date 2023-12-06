@@ -22,7 +22,20 @@ public class CardViewController {
 
     public void setImgView(Card card){
         //System.out.println("CardPacks/DEMO1Pack/"+card.getImage());
-        Image cardImage = new Image("file:CardPacks/DEMO1Pack/"+card.getImage());
+        StringBuilder thumbNail = new StringBuilder();
+        for(char c: card.getImage().toCharArray()){
+            if(Character.isDigit(c)){
+                thumbNail.append(c);
+            }
+        }
+
+        thumbNail.append(".jpg");
+
+
+        Image cardImage = new Image("file:CardPacks/"+ card.getPackFolder()+"/thumbs/"+thumbNail);
+        System.out.println("ThumbNail: "+thumbNail);
+        System.out.println(card.getImage());
+        System.out.println(card.getPackFolder());
         this.cardImage.setImage(cardImage);
 
         cardVBox.setOnMouseClicked(e -> {
