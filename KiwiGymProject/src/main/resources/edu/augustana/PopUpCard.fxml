@@ -14,6 +14,7 @@
          </image></ImageView>
       <Button fx:id="closeButton" layoutX="307.0" layoutY="520.0" mnemonicParsing="false" onAction="#closePopUp" text="Close" />
       <Button fx:id="addToPlanButton" layoutX="419.0" layoutY="520.0" mnemonicParsing="false" onAction="#addToPlanButton" text="Add to plan" />
+      <Button fx:id="printCardBtn" layoutX="543.0" layoutY="521.0" mnemonicParsing="false" onAction="#onPrintButtonAction" text="Print Card" />
    </children>
    <padding>
       <Insets right="30.0" />
