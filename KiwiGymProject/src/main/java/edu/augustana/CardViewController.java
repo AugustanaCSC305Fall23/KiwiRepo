@@ -2,7 +2,6 @@ package edu.augustana;
 
 import edu.augustana.cards.Card;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -16,20 +15,17 @@ public class CardViewController {
     @FXML
     private VBox cardVBox;
 
-    private static final String CARD_IMAGE_PATH = "CardPacks/DEMO1Pack/";
+    //private static final String CARD_IMAGE_PATH = "CardPacks/DEMO1Pack/";
 
     public void setImgView(Card card) {
         try {
-            setImage(card);
+            displayThumbnailImage(card);
             setCardVBoxClickListener(card);
         } catch (Exception e) {
             handleException(e);
         }
-    }
 
-    private void setImage(Card card) {
-        Image cardImage = new Image("file:" + CARD_IMAGE_PATH + card.getImage());
-        this.cardImage.setImage(cardImage);
+
     }
 
     private void setCardVBoxClickListener(Card card) {
@@ -38,5 +34,22 @@ public class CardViewController {
 
     private void handleException(Exception e) {
         PopupLoader.handleException(e);
+    }
+
+    private void displayThumbnailImage(Card card) {
+        StringBuilder thumbNail = new StringBuilder();
+
+        for (char c : card.getImage().toCharArray()) {
+            if (Character.isDigit(c)) {
+                thumbNail.append(c);
+            }
+        }
+
+        thumbNail.append(".jpg");
+
+
+        Image cardImage = new Image("file:CardPacks/" + card.getPackFolder() + "/thumbs/" + thumbNail);
+
+        this.cardImage.setImage(cardImage);
     }
 }

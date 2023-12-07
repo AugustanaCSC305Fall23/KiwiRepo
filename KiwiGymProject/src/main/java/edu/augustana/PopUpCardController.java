@@ -29,7 +29,7 @@ public class PopUpCardController extends FavoriteCardCollection {
 
     public void setCardToShow(Card card) {
         this.card = card;
-        Image cardImage = new Image("file:CardPacks/DEMO1Pack/"+card.getImage());
+        Image cardImage = new Image("file:CardPacks/"+card.getPackFolder()+"/"+card.getImage());
         popUpImageView.setImage(cardImage);
 
     }

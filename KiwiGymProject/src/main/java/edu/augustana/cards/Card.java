@@ -76,6 +76,9 @@ public class Card implements java.io.Serializable{
         return title;
     }
 
+    public String getPackFolder() {
+        return packFolder;
+    }
 
     public char getGender() {
         return gender;
@@ -96,4 +99,6 @@ public class Card implements java.io.Serializable{
     public ArrayList<String> getKeyWords() {
         return keyWords;
     }
+
+
 }

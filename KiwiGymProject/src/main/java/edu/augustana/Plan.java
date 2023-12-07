@@ -53,6 +53,7 @@ public class Plan {
     }
     @Override
     public String toString(){
-        return name;
+        return "Name: " + name + '\'' +
+                "Cards: " + cardList.toString();
     }
 }
