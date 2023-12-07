@@ -49,8 +49,6 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private CheckBox maleCheckBox;
     @FXML
-    private CheckBox neutralCheckBox;
-    @FXML
     private TreeView<String> lessonPlanTreeView;
     @FXML
     private StackPane treeViewStackedPane;
@@ -128,7 +126,6 @@ public class CreateAPlanController  implements Initializable{
         equipmentChoiceBox.setValue("ALL");
         genderCBList.add(femaleCheckBox);
         genderCBList.add(maleCheckBox);
-        genderCBList.add(neutralCheckBox);
         modelCBList.add(maleModel);
         modelCBList.add(femaleModel);
     }
@@ -184,15 +181,6 @@ public class CreateAPlanController  implements Initializable{
     void checkCbsMaleGend(ActionEvent event){
         for (CheckBox checkBox: genderCBList){
             if (!checkBox.equals(maleCheckBox) && checkBox.isSelected()){
-                checkBox.setSelected(false);
-            }
-        }
-    }
-
-    @FXML
-    void checkCBsNeutralGend(ActionEvent event){
-        for (CheckBox checkBox: genderCBList){
-            if (!checkBox.equals(neutralCheckBox) && checkBox.isSelected()){
                 checkBox.setSelected(false);
             }
         }
@@ -280,6 +268,10 @@ public class CreateAPlanController  implements Initializable{
         if (!superSearchTextBox.getText().isEmpty()){
             numFilters++;
             filterList.add(new SuperSearchFilter(superSearchTextBox.getText()));
+        }
+        if (favoritesCheckBox.isSelected()){
+            numFilters++;
+            filterList.add(new FavoriteFilter());
         }
         return numFilters > 1;
     }

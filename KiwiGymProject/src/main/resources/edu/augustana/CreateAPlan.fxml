@@ -61,7 +61,6 @@
             </Label>
             <CheckBox fx:id="maleCheckBox" mnemonicParsing="false" onAction="#checkCbsMaleGend" text="M" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <CheckBox fx:id="femaleCheckBox" mnemonicParsing="false" onAction="#checkCBsFemaleGend" text="F" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <CheckBox fx:id="neutralCheckBox" mnemonicParsing="false" onAction="#checkCBsNeutralGend" text="N" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
             <Label text="Event" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
