@@ -32,10 +32,6 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private Button searchButton;
     public CheckBox addedCardsCheckBox;
-    //@FXML
-    //private Button addCardBtn;
-    //@FXML
-    //private CheckBox addedCardsCheckBox;
     @FXML
     private Button backButton;
     @FXML
@@ -64,7 +60,8 @@ public class CreateAPlanController  implements Initializable{
     private CheckBox maleModel;
     @FXML
     private CheckBox femaleModel;
-
+    @FXML
+    private Button deleteButton;
     @FXML
     private TextField shortCodeTextBox;
     @FXML
@@ -77,6 +74,8 @@ public class CreateAPlanController  implements Initializable{
     private Button addPlanButton;
     @FXML
     private GridPane cardGrid;
+    @FXML
+    private Button changeNameButton;
     FileChooser fileChooser = new FileChooser();
     List<CheckBox> genderCBList = new ArrayList<>();
     List<CheckBox> modelCBList = new ArrayList<>();
@@ -86,7 +85,7 @@ public class CreateAPlanController  implements Initializable{
     public static TreeItem<String> planItems;
     public Course course;
     public static Plan currentPlan;
-    public static ChooseEventController chooseEventController = new ChooseEventController();
+    public int numCreatedPlans;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -343,6 +342,7 @@ public class CreateAPlanController  implements Initializable{
         lessonPlanTreeView.showRootProperty().setValue(false);
         currentPlanTree.setExpanded(true);
         planItems = currentPlanTree;
+        numCreatedPlans = 1;
     }
 
 
@@ -389,6 +389,7 @@ public class CreateAPlanController  implements Initializable{
         stage1.setScene(chooseEventscene);
         stage1.showAndWait();
     }
+
     private static int findPlanIntTreeView(String planName){
         int count = 0;
         for(TreeItem currentPlan : overallRoot.getChildren()){
@@ -400,12 +401,30 @@ public class CreateAPlanController  implements Initializable{
     }
     @FXML
     void addPlanButton(ActionEvent event){
-        int numPlans = overallRoot.getChildren().size() + 1;
-        Plan newPlan = new Plan("Plan " + numPlans);
+        numCreatedPlans ++;
+        Plan newPlan = new Plan("Plan " + numCreatedPlans);
         course.addPlan(newPlan);
         TreeItem<String> newPlanTree = new TreeItem<String>(newPlan.getName());
         overallRoot.getChildren().add(newPlanTree);
     }
-
-
+    @FXML
+    void setDeleteButton(ActionEvent event){
+        TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
+        if (!(item == null)){
+            item.getParent().getChildren().remove(item);
+            System.out.println(item.getValue());
+            if (course.getListPlanNames().contains(item.getValue())){
+                course.removePlan((String) item.getValue());
+            }
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Select something to delete!").showAndWait();
+        }
+    }
+    @FXML
+    void setChangeNameButton(ActionEvent event){
+        TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
+        if(!(item ==null)){
+            new Alert(Alert.AlertType.CONFIRMATION,"What would you like the name to be?").showAndWait();
+        }
+    }
 }

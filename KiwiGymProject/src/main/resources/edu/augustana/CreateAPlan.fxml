@@ -174,17 +174,27 @@
          </GridPane>
          <Button id="SaveButton" fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
-               <Insets right="125.0" top="25.0" />
-            </GridPane.margin>
-         </Button>
-         <Button fx:id="addPlanButton" mnemonicParsing="false" onAction="#addPlanButton" text="Add Plan" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
-            <GridPane.margin>
-               <Insets left="100.0" top="25.0" />
+               <Insets right="300.0" top="25.0" />
             </GridPane.margin>
          </Button>
          <Button id="PrintButton" fx:id="printPlanButton" mnemonicParsing="false" onAction="#printPlan" text="Print" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
-               <Insets right="25.0" top="25.0" />
+               <Insets right="200.0" top="25.0" />
+            </GridPane.margin>
+         </Button>
+         <Button fx:id="addPlanButton" mnemonicParsing="false" onAction="#addPlanButton" text="Add Plan" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+               <Insets right="75.0" top="25.0" />
+            </GridPane.margin>
+         </Button>
+         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#setDeleteButton" text="Delete" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane.margin>
+               <Insets left="60.0" top="25.0" />
+            </GridPane.margin>
+         </Button>
+         <Button fx:id="changeNameButton" mnemonicParsing="false" text="Change Name" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" onAction="#setChangeNameButton">
+            <GridPane.margin>
+               <Insets left="225.0" top="25.0" />
             </GridPane.margin>
          </Button>
          <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">

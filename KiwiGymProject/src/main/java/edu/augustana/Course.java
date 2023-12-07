@@ -9,19 +9,29 @@ import java.util.*;
 public class Course {
     private String name;
     private static List<Plan> listOfPlans;
+    private static List<String>listPlanNames;
 
     public Course(String name){
         listOfPlans = new ArrayList<>();
+        listPlanNames = new ArrayList<>();
         this.name = name;
     }
     public void addPlan(Plan plan){
         listOfPlans.add(plan);
+        listPlanNames.add(plan.getName());
+    }
+    public void removePlan(String planName){
+        listOfPlans.remove(listPlanNames.indexOf(planName));
+        listPlanNames.remove(planName);
     }
     public String getName(){
         return name;
     }
     public static List<Plan> getPlanList(){
         return listOfPlans;
+    }
+    public static List<String> getListPlanNames(){
+        return listPlanNames;
     }
     public static Course loadFromFile(File logFile) throws IOException {
         FileReader reader = new FileReader(logFile);
