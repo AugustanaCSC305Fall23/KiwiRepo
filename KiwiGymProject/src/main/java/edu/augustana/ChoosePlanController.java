@@ -33,13 +33,11 @@ public class ChoosePlanController {
     }
     public void setCard(Card card){
         cardToAdd = card;
-
     }
     @FXML
     private void setFinishAddToPlanButton(ActionEvent event)throws IOException{
         CreateAPlanController.addCardToTreeView(cardToAdd, choosePlanChoiceBox.getValue());
         finishAddToPlanButton.getScene().getWindow().hide();
-
     }
 
 }

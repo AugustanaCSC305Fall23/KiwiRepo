@@ -27,7 +27,7 @@
             <RowConstraints />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
-         <Label alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Current Course" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <Label fx:id="currentCourseLabel" alignment="CENTER" prefHeight="28.0" prefWidth="253.0" text="Current Course" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
                <Insets top="75.0" />
             </GridPane.margin>

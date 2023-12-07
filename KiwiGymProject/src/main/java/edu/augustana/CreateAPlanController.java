@@ -8,11 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -83,7 +86,7 @@ public class CreateAPlanController  implements Initializable{
     public static TreeItem<String> planItems;
     public Course course;
     public static Plan currentPlan;
-    public ChoosePlanController choosePlanController;
+    public static ChooseEventController chooseEventController = new ChooseEventController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -343,11 +346,18 @@ public class CreateAPlanController  implements Initializable{
     }
 
 
-    public static void addCardToTreeView(Card card, String planName){
+    public static void addCardToTreeView(Card card, String planName)throws IOException{
         int planNum = findPlanIntTreeView(planName);
-        int eventNum = isEventInTreeView(card.getEvent());
+        String cardEvent = "";
+        if (card.getEvent().equals("ALL")) {
+            chooseEventWindow();
+            cardEvent = ChooseEventController.chosenEvent;
+        }else{
+            cardEvent = card.getEvent();
+        }
+        int eventNum = isEventInTreeView(cardEvent, planNum);
         if( eventNum > overallRoot.getChildren().get(planNum).getChildren().size()){
-            TreeItem newEvent = new TreeItem(card.getEvent());
+            TreeItem newEvent = new TreeItem(cardEvent);
             TreeItem newCard = new TreeItem(card.getTitle());
             newEvent.getChildren().add(newCard);
             overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
@@ -357,13 +367,27 @@ public class CreateAPlanController  implements Initializable{
         }
         currentPlan.addCard(card);
     }
-    private static int isEventInTreeView(String event){
+    private static int isEventInTreeView(String event, int planNum)throws IOException {
         int count = 0;
-        for (TreeItem existingEvent : planItems.getChildren()){
-            if (existingEvent.getValue().equals(event)){return count;}
-            else{count ++;}
+        for (TreeItem existingEvent : overallRoot.getChildren().get(planNum).getChildren()) {
+            if (existingEvent.getValue().equals(event)) {
+                return count;
+            } else {
+                count++;
+            }
         }
         return count + 1;
+    }
+    @FXML
+    public static void chooseEventWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ChooseEventController.class.getResource("chooseEvent.fxml"));
+        Parent root = fxmlLoader.load();
+        ChooseEventController controller = fxmlLoader.getController();
+        Scene chooseEventscene = new Scene(root);
+        // make new stage and set the scene to choose plan window, and showAndWait the stage
+        Stage stage1 = new Stage();
+        stage1.setScene(chooseEventscene);
+        stage1.showAndWait();
     }
     private static int findPlanIntTreeView(String planName){
         int count = 0;
