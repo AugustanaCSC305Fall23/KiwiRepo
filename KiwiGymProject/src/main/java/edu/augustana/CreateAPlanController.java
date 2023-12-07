@@ -86,8 +86,12 @@ public class CreateAPlanController  implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         createTreeView();
+
         try {
-            cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/DEMO1.csv")).withType(Card.class).build().parse();
+            cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/Demo1/Demo1.csv")).withType(Card.class).build().parse();
+            cardBeans.addAll(new CsvToBeanBuilder(new FileReader("CardPacks/Demo2/Demo2.csv")).withType(Card.class).build().parse());
+            //demoTwoCards = new CsvToBeanBuilder(new FileReader("CardPacks/Demo2.csv")).withType(Card.class).build().parse();
+            //cardBeans.addAll(demoTwoCards);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -289,7 +293,7 @@ public class CreateAPlanController  implements Initializable{
                 fxmlLoader.setLocation(getClass().getResource("card.fxml"));
                 Pane pane = fxmlLoader.load();
                 CardViewController cardController = fxmlLoader.getController();
-            cardController.setImgView(cardBean);
+                cardController.setImgView(cardBean);
 
             if(column == 3){
                 column = 0;
