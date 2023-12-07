@@ -28,16 +28,25 @@ public class Course {
         Gson gson = new Gson();
         return gson.fromJson(reader,Course.class);
     }
-
     public void saveToFile(File logFile) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String serializedGymCourse = gson.toJson(this);
+        Map<String, List<Plan>> courseMap = new HashMap<>();
+        courseMap.put(name, listOfPlans);
+
+        String serializedGymCourse = gson.toJson(courseMap);
         PrintWriter writer = new PrintWriter(new FileWriter(logFile));
         writer.print(serializedGymCourse);
-        for (Plan plan : listOfPlans){
-            String serializedPlan = gson.toJson(plan);
-            writer.println(serializedPlan);
-        }
         writer.close();
     }
+//    public void saveToFile(File logFile) throws IOException {
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        String serializedGymCourse = gson.toJson(this);
+//        PrintWriter writer = new PrintWriter(new FileWriter(logFile));
+//        writer.print(serializedGymCourse);
+//        for (Plan plan : listOfPlans){
+//            String serializedPlan = gson.toJson(plan);
+//            writer.println(serializedPlan);
+//        }
+//        writer.close();
+//    }
 }

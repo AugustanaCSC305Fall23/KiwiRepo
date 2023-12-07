@@ -71,13 +71,15 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private Button savePlanButton;
     @FXML
+    private Button addPlanButton;
+    @FXML
     private GridPane cardGrid;
     FileChooser fileChooser = new FileChooser();
     List<CheckBox> genderCBList = new ArrayList<>();
     List<CheckBox> modelCBList = new ArrayList<>();
     List<CardFilter> filterList = new ArrayList<>();
     private List<Card> cardBeans;
-    public static TreeItem<String> courseItems;
+    public static TreeItem<String> overallRoot;
     public static TreeItem<String> planItems;
     public Course course;
     public static Plan currentPlan;
@@ -144,12 +146,12 @@ public class CreateAPlanController  implements Initializable{
         if (chosenFile != null) {
             try {
                 GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
-                courseItems.getChildren().clear();
+                overallRoot.getChildren().clear();
                 Course loadedLog = GymnasticsApp.getCurrentCourse();
                 for(Plan plan : loadedLog.getPlanList()){
                     for (Card card : plan.getCardList()){
                         TreeItem newCard = new TreeItem(card.getTitle());
-                        courseItems.getChildren().add(newCard);
+                        overallRoot.getChildren().add(newCard);
                     }
                 }
             } catch (IOException ex) {
@@ -330,29 +332,30 @@ public class CreateAPlanController  implements Initializable{
         this.course =  new Course("Course 1");
         currentPlan = new Plan("Plan 1");
         course.addPlan(currentPlan);
-        this.choosePlanController = new ChoosePlanController();
-        this.choosePlanController.addToChoiceBoxPlans(currentPlan);
+        TreeItem<String> coursePlanTree = new TreeItem<>(course.getName());
+        overallRoot = coursePlanTree;
         TreeItem<String> currentPlanTree = new TreeItem<String>(currentPlan.getName());
-        lessonPlanTreeView.setRoot(currentPlanTree);
+        coursePlanTree.getChildren().add(currentPlanTree);
+        lessonPlanTreeView.setRoot(coursePlanTree);
+        lessonPlanTreeView.showRootProperty().setValue(false);
         currentPlanTree.setExpanded(true);
         planItems = currentPlanTree;
     }
 
 
-    public static void addCardToTreeView(Card card){
+    public static void addCardToTreeView(Card card, String planName){
+        int planNum = findPlanIntTreeView(planName);
         int eventNum = isEventInTreeView(card.getEvent());
-        if( eventNum > planItems.getChildren().size()){
+        if( eventNum > overallRoot.getChildren().get(planNum).getChildren().size()){
             TreeItem newEvent = new TreeItem(card.getEvent());
             TreeItem newCard = new TreeItem(card.getTitle());
             newEvent.getChildren().add(newCard);
-            planItems.getChildren().add(newEvent);
+            overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
         }else{
             TreeItem newCard = new TreeItem(card.getTitle());
-            planItems.getChildren().get(eventNum).getChildren().add(newCard);
+            overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
         }
         currentPlan.addCard(card);
-        System.out.println(currentPlan);
-
     }
     private static int isEventInTreeView(String event){
         int count = 0;
@@ -362,10 +365,23 @@ public class CreateAPlanController  implements Initializable{
         }
         return count + 1;
     }
-    //@FXML
-    //private void switchToAddCard(ActionEvent event) throws IOException {
-    //    GymnasticsApp.setRoot("addCard");
-    //}
+    private static int findPlanIntTreeView(String planName){
+        int count = 0;
+        for(TreeItem currentPlan : overallRoot.getChildren()){
+            if(currentPlan.getValue().equals(planName)){
+                return count;
+            }else{count ++;}
+        }
+        return count;
+    }
+    @FXML
+    void addPlanButton(ActionEvent event){
+        int numPlans = overallRoot.getChildren().size() + 1;
+        Plan newPlan = new Plan("Plan " + numPlans);
+        course.addPlan(newPlan);
+        TreeItem<String> newPlanTree = new TreeItem<String>(newPlan.getName());
+        overallRoot.getChildren().add(newPlanTree);
+    }
 
 
 }
