@@ -78,6 +78,7 @@ public class CreateAPlanController  implements Initializable{
     List<CardFilter> filterList = new ArrayList<>();
     private List<Card> cardBeans;
     public static TreeItem<String> courseItems;
+    public static TreeItem<String> planItems;
     public Course course;
     public static Plan currentPlan;
     public ChoosePlanController choosePlanController;
@@ -327,19 +328,35 @@ public class CreateAPlanController  implements Initializable{
         course.addPlan(currentPlan);
         this.choosePlanController = new ChoosePlanController();
         this.choosePlanController.addToChoiceBoxPlans(currentPlan);
-        TreeItem<String> rootItem = new TreeItem<String>(course.getName());
-        lessonPlanTreeView.setRoot(rootItem);
-        rootItem.getChildren().add(new TreeItem<String>(currentPlan.getName()));
-        rootItem.setExpanded(true);
-        courseItems = rootItem;
+        TreeItem<String> currentPlanTree = new TreeItem<String>(currentPlan.getName());
+        lessonPlanTreeView.setRoot(currentPlanTree);
+        currentPlanTree.setExpanded(true);
+        planItems = currentPlanTree;
     }
 
 
     public static void addCardToTreeView(Card card){
-        if (currentPlan.getEvent().contains(card.getEvent())) {
+        int eventNum = isEventInTreeView(card.getEvent());
+        if( eventNum > planItems.getChildren().size()){
+            TreeItem newEvent = new TreeItem(card.getEvent());
             TreeItem newCard = new TreeItem(card.getTitle());
-            courseItems.getChildren().add(newCard);
+            newEvent.getChildren().add(newCard);
+            planItems.getChildren().add(newEvent);
+        }else{
+            TreeItem newCard = new TreeItem(card.getTitle());
+            planItems.getChildren().get(eventNum).getChildren().add(newCard);
         }
+        currentPlan.addCard(card);
+        System.out.println(currentPlan);
+
+    }
+    private static int isEventInTreeView(String event){
+        int count = 0;
+        for (TreeItem existingEvent : planItems.getChildren()){
+            if (existingEvent.getValue().equals(event)){return count;}
+            else{count ++;}
+        }
+        return count + 1;
     }
     //@FXML
     //private void switchToAddCard(ActionEvent event) throws IOException {

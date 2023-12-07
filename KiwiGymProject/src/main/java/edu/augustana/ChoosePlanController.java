@@ -44,14 +44,6 @@ public class ChoosePlanController {
     }
     @FXML
     private void setFinishAddToPlanButton(ActionEvent event)throws IOException{
-        Plan planAddedTo = null;
-        String wantedPlan = choosePlanChoiceBox.getValue();
-        for (Plan plan : choiceBoxPlans){
-            if (plan.getName().equals(wantedPlan)){
-                planAddedTo = plan;
-            }
-        }
-        planAddedTo.addCard(cardToAdd);
         CreateAPlanController.addCardToTreeView(cardToAdd);
         finishAddToPlanButton.getScene().getWindow().hide();
 
