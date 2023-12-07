@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card {
+public class Card implements java.io.Serializable{
 
     @CsvBindByName(column = "CODE", required = true)
     private String code;

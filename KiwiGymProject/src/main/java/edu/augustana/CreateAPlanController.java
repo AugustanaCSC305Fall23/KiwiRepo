@@ -49,8 +49,6 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private CheckBox maleCheckBox;
     @FXML
-    private CheckBox neutralCheckBox;
-    @FXML
     private TreeView<String> lessonPlanTreeView;
     @FXML
     private StackPane treeViewStackedPane;
@@ -229,6 +227,10 @@ public class CreateAPlanController  implements Initializable{
             numFilters++;
             filterList.add(new SuperSearchFilter(superSearchTextBox.getText()));
         }
+        if (favoritesCheckBox.isSelected()){
+            numFilters++;
+            filterList.add(new FavoriteFilter());
+        }
         return numFilters > 1;
     }
 
@@ -298,10 +300,6 @@ public class CreateAPlanController  implements Initializable{
             courseItems.getChildren().add(newCard);
         }
     }
-    //@FXML
-    //private void switchToAddCard(ActionEvent event) throws IOException {
-    //    GymnasticsApp.setRoot("addCard");
-    //}
 
 
 }
