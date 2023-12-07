@@ -9,6 +9,7 @@ public class FavoriteFilter implements CardFilter{
     }
     @Override
     public boolean matches(Card candidate) {
-        return FavoriteCardCollection.getFavorite().contains(candidate);
+        //FavoriteCardCollection.getFavorite().contains(candidate);
+        return true;
     }
 }

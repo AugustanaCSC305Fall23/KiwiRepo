@@ -23,14 +23,14 @@ public class FavoriteCardCollection {
         return favoriteCards;
     }
 
-    public static FavoriteCardCollection getTheFavoriteCollection() {
-        if (theFavoriteCollection == null) {
-            theFavoriteCollection =
-        }
-    }
-
-    private static FavoriteCardCollection loadCollectionFromJSON() {
-
-    }
+//    public static FavoriteCardCollection getTheFavoriteCollection() {
+//        if (theFavoriteCollection == null) {
+//            theFavoriteCollection = null;
+//        }
+//    }
+//
+//    private static FavoriteCardCollection loadCollectionFromJSON() {
+//
+//    }
 
 }

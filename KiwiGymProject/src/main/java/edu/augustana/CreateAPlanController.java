@@ -138,35 +138,35 @@ public class CreateAPlanController  implements Initializable{
         fileChooser.getExtensionFilters().add(filter);
         Window mainWindow = lessonPlanTreeView.getScene().getWindow();
         File chosenFile = fileChooser.showSaveDialog(mainWindow);
-        saveCurrentCourseToFile(chosenFile);
+        //saveCurrentCourseToFile(chosenFile);
     }
     @FXML
     public static void loadPlan(File chosenFile){
         if (chosenFile != null) {
-            try {
-                GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
-                overallRoot.getChildren().clear();
-                Course loadedLog = GymnasticsApp.getCurrentCourse();
-                for(Plan plan : loadedLog.getPlanList()){
-                    for (Card card : plan.getCardList()){
-                        TreeItem newCard = new TreeItem(card.getTitle());
-                        overallRoot.getChildren().add(newCard);
-                    }
-                }
-            } catch (IOException ex) {
-                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
-            }
+//            try {
+//                //GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
+//                overallRoot.getChildren().clear();
+//                //Course loadedLog = GymnasticsApp.getCurrentCourse();
+////                for(Plan plan : loadedLog.getPlanList()){
+////                    for (Card card : plan.getCardList()){
+////                        TreeItem newCard = new TreeItem(card.getTitle());
+////                        overallRoot.getChildren().add(newCard);
+////                    }
+////                }
+//            } catch (IOException ex) {
+//                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
+//            }
         }
     }
-    private void saveCurrentCourseToFile(File chosenFile) {
-        if (chosenFile != null) {
-            try {
-                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
-            } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
-            }
-        }
-    }
+//    private void saveCurrentCourseToFile(File chosenFile) {
+//        if (chosenFile != null) {
+//            try {
+//                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
+//            } catch (IOException e) {
+//                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
+//            }
+//        }
+//    }
 
     @FXML
     void checkCBsFemaleGend(ActionEvent event){
