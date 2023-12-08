@@ -191,9 +191,9 @@
                <Insets left="60.0" top="25.0" />
             </GridPane.margin>
          </Button>
-         <Button fx:id="changeNameButton" mnemonicParsing="false" text="Change Name" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" onAction="#setChangeNameButton">
+         <Button fx:id="changeNameButton" mnemonicParsing="false" onAction="#setChangeNameButton" text="Change Plan Name" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
-               <Insets left="225.0" top="25.0" />
+               <Insets left="250.0" top="25.0" />
             </GridPane.margin>
          </Button>
          <ScrollPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">

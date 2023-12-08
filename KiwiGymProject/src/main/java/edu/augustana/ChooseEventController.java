@@ -17,7 +17,7 @@ public class ChooseEventController {
     private Button finishChooseEventButton;
     public static String chosenEvent;
     public void initialize(){
-        String[] eventList = new String[]{"Uneven Bars", "Beam", "Vault", "Tramp", "Strength", "Pommel Horse", "Rings", "Parallel Bars", "Horizontal Bar"};
+        String[] eventList = new String[]{"Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength", "Pommel Horse", "Rings", "Parallel Bars", "Horizontal Bar"};
         for(String event : eventList){
             chooseEventChoiceBox.getItems().add(event);
         }
@@ -27,7 +27,5 @@ public class ChooseEventController {
     private void setFinishChooseEventButton(ActionEvent event)throws IOException {
         chosenEvent = chooseEventChoiceBox.getValue();
         finishChooseEventButton.getScene().getWindow().hide();
-
-
     }
 }
