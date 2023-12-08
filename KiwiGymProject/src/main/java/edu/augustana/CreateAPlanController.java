@@ -74,6 +74,8 @@ public class CreateAPlanController  implements Initializable{
     private GridPane cardGrid;
     @FXML
     private Button changeNameButton;
+    @FXML
+    private Label currentCourseLabel;
     FileChooser fileChooser = new FileChooser();
     List<CheckBox> genderCBList = new ArrayList<>();
     List<CheckBox> modelCBList = new ArrayList<>();
@@ -81,7 +83,7 @@ public class CreateAPlanController  implements Initializable{
     private List<Card> cardBeans;
     public static TreeItem<String> overallRoot;
     public static TreeItem<String> planItems;
-    public Course course;
+    public static Course course;
     public static Plan currentPlan;
     public int numCreatedPlans;
 
@@ -323,7 +325,12 @@ public class CreateAPlanController  implements Initializable{
 
     @FXML
     private void createTreeView() {
-        this.course =  new Course("Course 1");
+        TextInputDialog textInputDialog = new TextInputDialog();
+        textInputDialog.setHeaderText("Enter Course name");
+        textInputDialog.showAndWait();
+        String courseName = textInputDialog.getEditor().getText();
+        this.course =  new Course(courseName);
+        currentCourseLabel.setText(courseName);
         currentPlan = new Plan("Plan 1");
         course.addPlan(currentPlan);
         TreeItem<String> coursePlanTree = new TreeItem<>(course.getName());
@@ -357,7 +364,7 @@ public class CreateAPlanController  implements Initializable{
             TreeItem newCard = new TreeItem(card.getTitle());
             overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
         }
-        currentPlan.addCard(card);
+        course.addCardToPlan(planName, card);
     }
     private static int isEventInTreeView(String event, int planNum)throws IOException {
         int count = 0;
@@ -401,22 +408,48 @@ public class CreateAPlanController  implements Initializable{
     }
     @FXML
     void setDeleteButton(ActionEvent event){
+        System.out.println(Course.getPlanList());
         TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
         if (!(item == null)){
             item.getParent().getChildren().remove(item);
-            System.out.println(item.getValue());
             if (course.getListPlanNames().contains(item.getValue())){
                 course.removePlan((String) item.getValue());
+            }else{
+                for (Plan plan : course.getPlanList()){
+                    if(plan.getEventList().contains(item.getValue())){
+                        plan.removeEvent((String) item.getValue());
+                    }else{
+                        List<Card> fakeCardList = new ArrayList<>(plan.getCardList());
+                        for(Card card : fakeCardList){
+                            if(card.getTitle().equals(item.getValue())){
+                                plan.removeCard((String) item.getValue());
+                            }
+                        }
+                    }
+                }
             }
         }else{
             new Alert(Alert.AlertType.ERROR,"Select something to delete!").showAndWait();
         }
     }
     @FXML
-    void setChangeNameButton(ActionEvent event){
+    void setChangeNameButton(ActionEvent event) {
         TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
-        if(!(item ==null)){
-            new Alert(Alert.AlertType.CONFIRMATION,"What would you like the name to be?").showAndWait();
+        if (!(item == null)) {
+            if (item.getParent() != overallRoot){
+                new Alert(Alert.AlertType.ERROR, "You can only change the name of plans!").showAndWait();
+            }else {
+                TextInputDialog textInputDialog = new TextInputDialog();
+                textInputDialog.setHeaderText("Enter new name");
+                textInputDialog.showAndWait();
+                String newName = textInputDialog.getEditor().getText();
+                if (!(item == null)) {
+                    course.changePlanName(newName, (String) item.getValue());
+                    item.setValue(newName);
+                } else {
+                    new Alert(Alert.AlertType.ERROR, "Select something to edit!").showAndWait();
+                }
+            }
         }
     }
 }

@@ -191,7 +191,7 @@
                <Insets left="60.0" top="25.0" />
             </GridPane.margin>
          </Button>
-         <Button fx:id="changeNameButton" mnemonicParsing="false" text="Change Name" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" onAction="#setChangeNameButton">
+         <Button fx:id="changeNameButton" mnemonicParsing="false" onAction="#setChangeNameButton" text="Change Name" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
                <Insets left="225.0" top="25.0" />
             </GridPane.margin>
