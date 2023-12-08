@@ -28,7 +28,6 @@ public class Course {
     public void addCardToPlan(String plan, Card card){
         Plan selectedPlan = listOfPlans.get(listPlanNames.indexOf(plan));
         selectedPlan.addCard(card);
-        System.out.println(listOfPlans);
     }
     public String getName(){
         return name;
@@ -37,7 +36,6 @@ public class Course {
         listOfPlans.get(listPlanNames.indexOf(oldName)).changeName(newName);
         listPlanNames.add(listPlanNames.indexOf(oldName), newName);
         listPlanNames.remove(oldName);
-        System.out.println(listOfPlans);
     }
     public static List<Plan> getPlanList(){
         return listOfPlans;
