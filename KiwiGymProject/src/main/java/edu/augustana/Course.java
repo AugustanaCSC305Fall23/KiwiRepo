@@ -9,13 +9,20 @@ import java.util.*;
 public class Course {
     private String name;
     private static List<Plan> listOfPlans;
+    private static List<String>listPlanNames;
 
     public Course(String name){
         listOfPlans = new ArrayList<>();
+        listPlanNames = new ArrayList<>();
         this.name = name;
     }
     public void addPlan(Plan plan){
         listOfPlans.add(plan);
+        listPlanNames.add(plan.getName());
+    }
+    public void removePlan(String planName){
+        listOfPlans.remove(listPlanNames.indexOf(planName));
+        listPlanNames.remove(planName);
     }
     public String getName(){
         return name;
@@ -23,21 +30,33 @@ public class Course {
     public static List<Plan> getPlanList(){
         return listOfPlans;
     }
+    public static List<String> getListPlanNames(){
+        return listPlanNames;
+    }
     public static Course loadFromFile(File logFile) throws IOException {
         FileReader reader = new FileReader(logFile);
         Gson gson = new Gson();
         return gson.fromJson(reader,Course.class);
     }
-
     public void saveToFile(File logFile) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String serializedGymCourse = gson.toJson(this);
+        Map<String, List<Plan>> courseMap = new HashMap<>();
+        courseMap.put(name, listOfPlans);
+
+        String serializedGymCourse = gson.toJson(courseMap);
         PrintWriter writer = new PrintWriter(new FileWriter(logFile));
         writer.print(serializedGymCourse);
-        for (Plan plan : listOfPlans){
-            String serializedPlan = gson.toJson(plan);
-            writer.println(serializedPlan);
-        }
         writer.close();
     }
+//    public void saveToFile(File logFile) throws IOException {
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//        String serializedGymCourse = gson.toJson(this);
+//        PrintWriter writer = new PrintWriter(new FileWriter(logFile));
+//        writer.print(serializedGymCourse);
+//        for (Plan plan : listOfPlans){
+//            String serializedPlan = gson.toJson(plan);
+//            writer.println(serializedPlan);
+//        }
+//        writer.close();
+//    }
 }

@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
+import static edu.augustana.PopupLoader.handleException;
+
 
 public class CardViewController {
 
@@ -29,12 +33,18 @@ public class CardViewController {
     }
 
     private void setCardVBoxClickListener(Card card) {
-        cardVBox.setOnMouseClicked(e -> PopupLoader.cardPopupWindow(card));
+        cardVBox.setOnMouseClicked(e -> {
+            try {
+                PopupLoader.cardPopupWindow(card);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
-    private void handleException(Exception e) {
+    /*private void handleException(Exception e) {
         PopupLoader.handleException(e);
-    }
+    }*/
 
     private void displayThumbnailImage(Card card) {
         StringBuilder thumbNail = new StringBuilder();

@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class PopupLoader {
 
-    public static void cardPopupWindow(Card card) {
-        try {
+    public static void cardPopupWindow(Card card) throws IOException {
+        //try {
             FXMLLoader fxmlLoader = new FXMLLoader(PopUpCardController.class.getResource("PopUpCard.fxml"));
             Parent root = fxmlLoader.load();
             PopUpCardController controller = fxmlLoader.getController();
@@ -23,9 +23,9 @@ public class PopupLoader {
             Stage stage = new Stage();
             stage.setScene(popupScene);
             stage.showAndWait();
-        } catch (IOException e) {
-            handleException(e);
-        }
+//        } catch (IOException e) {
+//            handleException(e);
+//        }
     }
 
     public static void handleException(Exception e) {

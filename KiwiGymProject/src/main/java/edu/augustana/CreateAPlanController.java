@@ -8,11 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -29,10 +32,6 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private Button searchButton;
     public CheckBox addedCardsCheckBox;
-    //@FXML
-    //private Button addCardBtn;
-    //@FXML
-    //private CheckBox addedCardsCheckBox;
     @FXML
     private Button backButton;
     @FXML
@@ -50,8 +49,6 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private CheckBox maleCheckBox;
     @FXML
-    private CheckBox neutralCheckBox;
-    @FXML
     private TreeView<String> lessonPlanTreeView;
     @FXML
     private StackPane treeViewStackedPane;
@@ -61,7 +58,8 @@ public class CreateAPlanController  implements Initializable{
     private CheckBox maleModel;
     @FXML
     private CheckBox femaleModel;
-
+    @FXML
+    private Button deleteButton;
     @FXML
     private TextField shortCodeTextBox;
     @FXML
@@ -71,16 +69,21 @@ public class CreateAPlanController  implements Initializable{
     @FXML
     private Button savePlanButton;
     @FXML
+    private Button addPlanButton;
+    @FXML
     private GridPane cardGrid;
+    @FXML
+    private Button changeNameButton;
     FileChooser fileChooser = new FileChooser();
     List<CheckBox> genderCBList = new ArrayList<>();
     List<CheckBox> modelCBList = new ArrayList<>();
     List<CardFilter> filterList = new ArrayList<>();
     private List<Card> cardBeans;
-    public static TreeItem<String> courseItems;
+    public static TreeItem<String> overallRoot;
+    public static TreeItem<String> planItems;
     public Course course;
     public static Plan currentPlan;
-    public ChoosePlanController choosePlanController;
+    public int numCreatedPlans;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -123,7 +126,6 @@ public class CreateAPlanController  implements Initializable{
         equipmentChoiceBox.setValue("ALL");
         genderCBList.add(femaleCheckBox);
         genderCBList.add(maleCheckBox);
-        genderCBList.add(neutralCheckBox);
         modelCBList.add(maleModel);
         modelCBList.add(femaleModel);
     }
@@ -136,35 +138,35 @@ public class CreateAPlanController  implements Initializable{
         fileChooser.getExtensionFilters().add(filter);
         Window mainWindow = lessonPlanTreeView.getScene().getWindow();
         File chosenFile = fileChooser.showSaveDialog(mainWindow);
-        saveCurrentCourseToFile(chosenFile);
+        //saveCurrentCourseToFile(chosenFile);
     }
     @FXML
     public static void loadPlan(File chosenFile){
         if (chosenFile != null) {
-            try {
-                GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
-                courseItems.getChildren().clear();
-                Course loadedLog = GymnasticsApp.getCurrentCourse();
-                for(Plan plan : loadedLog.getPlanList()){
-                    for (Card card : plan.getCardList()){
-                        TreeItem newCard = new TreeItem(card.getTitle());
-                        courseItems.getChildren().add(newCard);
-                    }
-                }
-            } catch (IOException ex) {
-                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
-            }
+//            try {
+//                //GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
+//                overallRoot.getChildren().clear();
+//                //Course loadedLog = GymnasticsApp.getCurrentCourse();
+////                for(Plan plan : loadedLog.getPlanList()){
+////                    for (Card card : plan.getCardList()){
+////                        TreeItem newCard = new TreeItem(card.getTitle());
+////                        overallRoot.getChildren().add(newCard);
+////                    }
+////                }
+//            } catch (IOException ex) {
+//                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
+//            }
         }
     }
-    private void saveCurrentCourseToFile(File chosenFile) {
-        if (chosenFile != null) {
-            try {
-                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
-            } catch (IOException e) {
-                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
-            }
-        }
-    }
+//    private void saveCurrentCourseToFile(File chosenFile) {
+//        if (chosenFile != null) {
+//            try {
+//                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
+//            } catch (IOException e) {
+//                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
+//            }
+//        }
+//    }
 
     @FXML
     void checkCBsFemaleGend(ActionEvent event){
@@ -179,15 +181,6 @@ public class CreateAPlanController  implements Initializable{
     void checkCbsMaleGend(ActionEvent event){
         for (CheckBox checkBox: genderCBList){
             if (!checkBox.equals(maleCheckBox) && checkBox.isSelected()){
-                checkBox.setSelected(false);
-            }
-        }
-    }
-
-    @FXML
-    void checkCBsNeutralGend(ActionEvent event){
-        for (CheckBox checkBox: genderCBList){
-            if (!checkBox.equals(neutralCheckBox) && checkBox.isSelected()){
                 checkBox.setSelected(false);
             }
         }
@@ -276,6 +269,10 @@ public class CreateAPlanController  implements Initializable{
             numFilters++;
             filterList.add(new SuperSearchFilter(superSearchTextBox.getText()));
         }
+        if (favoritesCheckBox.isSelected()){
+            numFilters++;
+            filterList.add(new FavoriteFilter());
+        }
         return numFilters > 1;
     }
 
@@ -329,26 +326,97 @@ public class CreateAPlanController  implements Initializable{
         this.course =  new Course("Course 1");
         currentPlan = new Plan("Plan 1");
         course.addPlan(currentPlan);
-        this.choosePlanController = new ChoosePlanController();
-        this.choosePlanController.addToChoiceBoxPlans(currentPlan);
-        TreeItem<String> rootItem = new TreeItem<String>(course.getName());
-        lessonPlanTreeView.setRoot(rootItem);
-        rootItem.getChildren().add(new TreeItem<String>(currentPlan.getName()));
-        rootItem.setExpanded(true);
-        courseItems = rootItem;
+        TreeItem<String> coursePlanTree = new TreeItem<>(course.getName());
+        overallRoot = coursePlanTree;
+        TreeItem<String> currentPlanTree = new TreeItem<String>(currentPlan.getName());
+        coursePlanTree.getChildren().add(currentPlanTree);
+        lessonPlanTreeView.setRoot(coursePlanTree);
+        lessonPlanTreeView.showRootProperty().setValue(false);
+        currentPlanTree.setExpanded(true);
+        planItems = currentPlanTree;
+        numCreatedPlans = 1;
     }
 
 
-    public static void addCardToTreeView(Card card){
-        if (currentPlan.getEvent().contains(card.getEvent())) {
+    public static void addCardToTreeView(Card card, String planName)throws IOException{
+        int planNum = findPlanIntTreeView(planName);
+        String cardEvent = "";
+        if (card.getEvent().equals("ALL")) {
+            chooseEventWindow();
+            cardEvent = ChooseEventController.chosenEvent;
+        }else{
+            cardEvent = card.getEvent();
+        }
+        int eventNum = isEventInTreeView(cardEvent, planNum);
+        if( eventNum > overallRoot.getChildren().get(planNum).getChildren().size()){
+            TreeItem newEvent = new TreeItem(cardEvent);
             TreeItem newCard = new TreeItem(card.getTitle());
-            courseItems.getChildren().add(newCard);
+            newEvent.getChildren().add(newCard);
+            overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
+        }else{
+            TreeItem newCard = new TreeItem(card.getTitle());
+            overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
+        }
+        currentPlan.addCard(card);
+    }
+    private static int isEventInTreeView(String event, int planNum)throws IOException {
+        int count = 0;
+        for (TreeItem existingEvent : overallRoot.getChildren().get(planNum).getChildren()) {
+            if (existingEvent.getValue().equals(event)) {
+                return count;
+            } else {
+                count++;
+            }
+        }
+        return count + 1;
+    }
+    @FXML
+    public static void chooseEventWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(ChooseEventController.class.getResource("chooseEvent.fxml"));
+        Parent root = fxmlLoader.load();
+        ChooseEventController controller = fxmlLoader.getController();
+        Scene chooseEventscene = new Scene(root);
+        // make new stage and set the scene to choose plan window, and showAndWait the stage
+        Stage stage1 = new Stage();
+        stage1.setScene(chooseEventscene);
+        stage1.showAndWait();
+    }
+
+    private static int findPlanIntTreeView(String planName){
+        int count = 0;
+        for(TreeItem currentPlan : overallRoot.getChildren()){
+            if(currentPlan.getValue().equals(planName)){
+                return count;
+            }else{count ++;}
+        }
+        return count;
+    }
+    @FXML
+    void addPlanButton(ActionEvent event){
+        numCreatedPlans ++;
+        Plan newPlan = new Plan("Plan " + numCreatedPlans);
+        course.addPlan(newPlan);
+        TreeItem<String> newPlanTree = new TreeItem<String>(newPlan.getName());
+        overallRoot.getChildren().add(newPlanTree);
+    }
+    @FXML
+    void setDeleteButton(ActionEvent event){
+        TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
+        if (!(item == null)){
+            item.getParent().getChildren().remove(item);
+            System.out.println(item.getValue());
+            if (course.getListPlanNames().contains(item.getValue())){
+                course.removePlan((String) item.getValue());
+            }
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Select something to delete!").showAndWait();
         }
     }
-    //@FXML
-    //private void switchToAddCard(ActionEvent event) throws IOException {
-    //    GymnasticsApp.setRoot("addCard");
-    //}
-
-
+    @FXML
+    void setChangeNameButton(ActionEvent event){
+        TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
+        if(!(item ==null)){
+            new Alert(Alert.AlertType.CONFIRMATION,"What would you like the name to be?").showAndWait();
+        }
+    }
 }

@@ -11,6 +11,6 @@ public class GenderFilter implements CardFilter {
     }
     @Override
     public boolean matches(Card candidate) {
-        return candidate.getGender() == desiredGender;
+        return candidate.getGender() == desiredGender || candidate.getGender() == 'N';
     }
 }

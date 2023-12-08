@@ -15,12 +15,9 @@ public class ChoosePlanController {
     private ChoiceBox<String> choosePlanChoiceBox;
     @FXML
     private Button finishAddToPlanButton;
-    @FXML
-    private List<Plan> choiceBoxPlans;
     private Card cardToAdd;
     private Stage stage;
     public ChoosePlanController() {
-        choiceBoxPlans = Course.getPlanList();
     }
     @FXML
     public void initialize(){
@@ -28,33 +25,20 @@ public class ChoosePlanController {
     }
 
     @FXML
-    public void addToChoiceBoxPlans(Plan plan){
-        choiceBoxPlans.add(plan);
-    }
-    @FXML
     public void updateChoiceBox(){
-        for (Plan plan : choiceBoxPlans){
+        choosePlanChoiceBox.getItems().clear();
+        for (Plan plan : Course.getPlanList()){
             choosePlanChoiceBox.getItems().add(plan.getName());
         }
-        choosePlanChoiceBox.setValue(choiceBoxPlans.get(0).getName());
+        choosePlanChoiceBox.setValue(Course.getPlanList().get(0).getName());
     }
     public void setCard(Card card){
         cardToAdd = card;
-
     }
     @FXML
     private void setFinishAddToPlanButton(ActionEvent event)throws IOException{
-        Plan planAddedTo = null;
-        String wantedPlan = choosePlanChoiceBox.getValue();
-        for (Plan plan : choiceBoxPlans){
-            if (plan.getName().equals(wantedPlan)){
-                planAddedTo = plan;
-            }
-        }
-        planAddedTo.addCard(cardToAdd);
-        CreateAPlanController.addCardToTreeView(cardToAdd);
+        CreateAPlanController.addCardToTreeView(cardToAdd, choosePlanChoiceBox.getValue());
         finishAddToPlanButton.getScene().getWindow().hide();
-
     }
 
 }
