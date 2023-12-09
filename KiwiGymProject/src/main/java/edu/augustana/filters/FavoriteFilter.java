@@ -1,6 +1,5 @@
 package edu.augustana.filters;
 
-import edu.augustana.FavoriteCardCollection;
 import edu.augustana.cards.Card;
 
 public class FavoriteFilter implements CardFilter{
