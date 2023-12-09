@@ -25,14 +25,21 @@ public class PopUpCardController extends FavoriteCardCollection {
     private Card card;
 
 
-
-
+    /** sets the card that is being displayed in the popup
+     *
+     * @param card the card being displayed
+     */
     public void setCardToShow(Card card) {
         this.card = card;
         Image cardImage = new Image("file:CardPacks/"+card.getPackFolder()+"/"+card.getImage());
         popUpImageView.setImage(cardImage);
 
     }
+
+    /** shows a window for the user to choose where the card will go
+     *
+     * @param event on button push
+     */
     @FXML
     public void addToPlanButton(ActionEvent event){
         try {
@@ -40,9 +47,10 @@ public class PopUpCardController extends FavoriteCardCollection {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-    };
+    }
+
     @FXML
-    public void choosePlanWindow(Card card) throws IOException {
+    private void choosePlanWindow(Card card) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChoosePlanController.class.getResource("choosePlan.fxml"));
         Parent root = fxmlLoader.load();
         ChoosePlanController controller = fxmlLoader.getController();

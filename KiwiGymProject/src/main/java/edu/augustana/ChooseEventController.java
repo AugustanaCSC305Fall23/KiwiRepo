@@ -16,12 +16,16 @@ public class ChooseEventController {
     @FXML
     private Button finishChooseEventButton;
     public static String chosenEvent;
+
+    /**
+     * adds all possible events to the choice box
+     */
     public void initialize(){
         String[] eventList = new String[]{"Floor", "Uneven Bars", "Beam", "Vault", "Tramp", "Strength", "Pommel Horse", "Rings", "Parallel Bars", "Horizontal Bar"};
         for(String event : eventList){
             chooseEventChoiceBox.getItems().add(event);
         }
-        chooseEventChoiceBox.setValue(chooseEventChoiceBox.getItems().get(0));
+        chooseEventChoiceBox.setValue("Choose Event");
     }
     @FXML
     private void setFinishChooseEventButton(ActionEvent event)throws IOException {

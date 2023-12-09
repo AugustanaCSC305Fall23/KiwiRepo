@@ -24,7 +24,9 @@ public class MenuPageController {
     @FXML
     private Button createAPlan;
 
-    // Allows accessibility to information about the development team
+    /*
+    shows a popup of information from the development team
+     */
     @FXML
     void informationButton(ActionEvent event)throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChoosePlanController.class.getResource("InformationBox.fxml"));
@@ -37,11 +39,16 @@ public class MenuPageController {
         stage1.showAndWait();
     }
 
-    // Allows the user access to the CreateAPlan page from the menu
+    /*
+     Allows the user access to the CreateAPlan page from the menu
+     */
     @FXML
     private void switchToCreateAPlan(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("CreateAPlan");
     }
+    /*
+    loads a saved plan from the current computer
+     */
     @FXML
     private void setLoadPlan(ActionEvent event) throws IOException{
         FileChooser fileChooser = new FileChooser();

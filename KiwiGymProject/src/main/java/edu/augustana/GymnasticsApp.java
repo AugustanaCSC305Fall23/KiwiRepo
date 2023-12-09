@@ -14,6 +14,11 @@ public class GymnasticsApp extends Application {
 
     private static Scene scene;
 
+    /** creates the menu page
+     *
+     * @param stage the stage that everything is going to be created on
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MenuPage"), 700, 500);

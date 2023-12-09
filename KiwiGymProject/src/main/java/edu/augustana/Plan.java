@@ -13,7 +13,10 @@ public class Plan {
     private List<Card> cardList;
     private List<String> cardTitles;
 
-
+    /** constructs a new plan obejct
+     *
+     * @param NewPlanName the name of the new plan
+     */
     public Plan(String NewPlanName) {
         name = NewPlanName;
         cardList = new ArrayList<>();
@@ -21,6 +24,11 @@ public class Plan {
         planEquipment = new ArrayList<>();
         eventList = new ArrayList<>();
     }
+
+    /** adds a card to the plan
+     *
+     * @param cardToAdd the card being added to the plan
+     */
     public void addCard(Card cardToAdd){
         cardList.add(cardToAdd);
         cardTitles.add(cardToAdd.getTitle());
@@ -29,7 +37,9 @@ public class Plan {
         }
         addEquipment(cardToAdd);
     }
-    public void addEquipment(Card card){
+
+
+    private void addEquipment(Card card){
         List<String> equipmentToAdd = card.getEquipment();
         for (String equipment : equipmentToAdd){
             if (!planEquipment.contains(equipment)){
@@ -37,6 +47,11 @@ public class Plan {
             }
         }
     }
+
+    /** removes an event from the list of events in the plan
+     *
+     * @param event the event that is being removed
+     */
     public void removeEvent(String event){
         eventList.remove(event);
         List<Card> copyList = new ArrayList<>(cardList);
@@ -47,6 +62,11 @@ public class Plan {
             }
         }
     }
+
+    /** removes a card from the plan
+     *
+     * @param cardName the name of the card being removed
+     */
     public void removeCard(String cardName){
         cardList.remove(cardTitles.indexOf(cardName));
         cardTitles.remove(cardName);
@@ -54,15 +74,17 @@ public class Plan {
     public String getName() {
         return name;
     }
+
+    /** changes the name of the plan
+     *
+     * @param name the new name of the plan
+     */
     public void changeName(String name){
         this.name = name;
     }
 
     public List<String> getEventList() {
         return eventList;
-    }
-    public void changeEventName(String newName, String oldName){
-        eventList.add(eventList.indexOf(oldName), newName);
     }
 
     public char getGender() {

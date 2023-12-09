@@ -171,7 +171,7 @@
             </Label>
             <TextField fx:id="superSearchTextBox" GridPane.columnIndex="1" GridPane.rowIndex="10" />
          </GridPane>
-         <Button id="SaveButton" fx:id="savePlanButton" mnemonicParsing="false" onAction="#savePlan" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+         <Button id="SaveButton" fx:id="savePlanButton" mnemonicParsing="false" onAction="#saveCourse" text="Save" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
             <GridPane.margin>
                <Insets right="300.0" top="25.0" />
             </GridPane.margin>

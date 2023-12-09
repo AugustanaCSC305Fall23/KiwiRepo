@@ -41,10 +41,18 @@ public class Card implements java.io.Serializable{
     @CsvBindAndSplitByName(elementType = String.class, column = "Keywords", splitOn = "\\,", required = true)
     private ArrayList<String> keyWords;
 
+    /**
+     *
+     * @return image of the current card
+     */
     public String getImage(){
         return image;
     }
 
+    /**
+     *
+     * @return string including all elements of the card
+     */
     @Override
     public String toString(){
         return "Code: "+code+"\n " +
@@ -59,7 +67,6 @@ public class Card implements java.io.Serializable{
                 "Equipment: "+equipment+"\n " +
                 "Keyword: "+keyWords+"\n \n";
     }
-
     public String getCode() {
         return code;
     }

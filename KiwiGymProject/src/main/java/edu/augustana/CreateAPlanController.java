@@ -90,7 +90,6 @@ public class CreateAPlanController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createTreeView();
-
         try {
             cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/Demo1/Demo1.csv")).withType(Card.class).build().parse();
             cardBeans.addAll(new CsvToBeanBuilder(new FileReader("CardPacks/Demo2/Demo2.csv")).withType(Card.class).build().parse());
@@ -132,8 +131,9 @@ public class CreateAPlanController  implements Initializable {
         modelCBList.add(femaleModel);
     }
 
+
     @FXML
-    void savePlan(ActionEvent event) {
+    void saveCourse(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save" + course.getName());
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("GymProfCourse (*.GymProfCourse)", "*.GymCourse");
@@ -143,6 +143,10 @@ public class CreateAPlanController  implements Initializable {
         //saveCurrentCourseToFile(chosenFile);
     }
 
+    /**loads a plan from the chosen file
+     *
+     * @param chosenFile the file that the plan is in
+     */
     @FXML
     public static void loadPlan(File chosenFile) {
         if (chosenFile != null) {
@@ -171,6 +175,7 @@ public class CreateAPlanController  implements Initializable {
 //        }
 //    }
 
+
     @FXML
     void checkCBsFemaleGend(ActionEvent event) {
         for (CheckBox checkBox : genderCBList) {
@@ -179,7 +184,6 @@ public class CreateAPlanController  implements Initializable {
             }
         }
     }
-
     @FXML
     void checkCbsMaleGend(ActionEvent event) {
         for (CheckBox checkBox : genderCBList) {
@@ -279,6 +283,9 @@ public class CreateAPlanController  implements Initializable {
         return numFilters > 1;
     }
 
+    /*
+    displays the cards
+     */
     private void displayCards(List<Card> cardList) {
         while (!cardGrid.getChildren().isEmpty()) {
             cardGrid.getChildren().remove(0);
@@ -305,14 +312,11 @@ public class CreateAPlanController  implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
-    // Allows user to access the Menu page from the CreateAPlan page
     @FXML
     void switchToMain(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("MenuPage");
     }
 
-    //Allows user to access the Filter page from the CreateAPlan page
     @FXML
     private void switchToAddCard(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("addCard");
@@ -323,7 +327,9 @@ public class CreateAPlanController  implements Initializable {
     void printPlan(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("PrintView");
     }
-
+    /*
+    creates the tree view and sets the course and first plan to the desired data fields
+    */
     @FXML
     private void createTreeView() {
         TextInputDialog textInputDialog = new TextInputDialog();
@@ -345,8 +351,13 @@ public class CreateAPlanController  implements Initializable {
         numCreatedPlans = 1;
     }
 
-
-    public static void addCardToTreeView(Card card, String planName) throws IOException {
+    /** adds a card to the course
+     *
+     * @param card the card being added
+     * @param planName the name of the plan the card is being added to
+     * @throws IOException
+     */
+    public static void addCardToCourse(Card card, String planName) throws IOException {
         int planNum = findPlanIntTreeView(planName);
         String cardEvent = "";
         if (card.getEvent().equals("ALL")) {
@@ -355,19 +366,25 @@ public class CreateAPlanController  implements Initializable {
         } else {
             cardEvent = card.getEvent();
         }
-        int eventNum = isEventInTreeView(cardEvent, planNum);
-        if (eventNum > overallRoot.getChildren().get(planNum).getChildren().size()) {
-            TreeItem newEvent = new TreeItem(cardEvent);
-            TreeItem newCard = new TreeItem(card.getTitle());
-            newEvent.getChildren().add(newCard);
-            overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
-        } else {
-            TreeItem newCard = new TreeItem(card.getTitle());
-            overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
+        if (cardEvent.equals("Choose Event")){
+            new Alert(Alert.AlertType.ERROR, "You did not choose an event!").showAndWait();
+        }else {
+            int eventNum = isEventInTreeView(cardEvent, planNum);
+            if (eventNum > overallRoot.getChildren().get(planNum).getChildren().size()) {
+                TreeItem newEvent = new TreeItem(cardEvent);
+                TreeItem newCard = new TreeItem(card.getTitle());
+                newEvent.getChildren().add(newCard);
+                overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
+            } else {
+                TreeItem newCard = new TreeItem(card.getTitle());
+                overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
+            }
+            course.addCardToPlan(planName, card);
         }
-        course.addCardToPlan(planName, card);
     }
-
+    /*
+    checks if the event is already in the tree view
+     */
     private static int isEventInTreeView(String event, int planNum) throws IOException {
         int count = 0;
         for (TreeItem existingEvent : overallRoot.getChildren().get(planNum).getChildren()) {
@@ -380,6 +397,10 @@ public class CreateAPlanController  implements Initializable {
         return count + 1;
     }
 
+    /** craetes a choose event window for the cards that are part of "ALL" events
+     *
+     * @throws IOException
+     */
     @FXML
     public static void chooseEventWindow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ChooseEventController.class.getResource("chooseEvent.fxml"));
@@ -391,7 +412,9 @@ public class CreateAPlanController  implements Initializable {
         stage1.setScene(chooseEventscene);
         stage1.showAndWait();
     }
-
+    /*
+    finds a plan in the tree view using the name
+     */
     private static int findPlanIntTreeView(String planName) {
         int count = 0;
         for (TreeItem currentPlan : overallRoot.getChildren()) {
@@ -412,10 +435,11 @@ public class CreateAPlanController  implements Initializable {
         TreeItem<String> newPlanTree = new TreeItem<String>(newPlan.getName());
         overallRoot.getChildren().add(newPlanTree);
     }
-
+    /*
+    deletes items from the course
+     */
     @FXML
     void setDeleteButton(ActionEvent event) {
-        System.out.println(Course.getPlanList());
         TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
         if (!(item == null)) {
             if(course.getPlanList().size() < 2){
@@ -443,7 +467,9 @@ public class CreateAPlanController  implements Initializable {
             new Alert(Alert.AlertType.ERROR, "Select something to delete!").showAndWait();
         }
     }
-
+    /*
+    changes the name of the selected plan
+     */
     @FXML
     void setChangeNameButton(ActionEvent event) {
         TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
