@@ -418,18 +418,22 @@ public class CreateAPlanController  implements Initializable {
         System.out.println(Course.getPlanList());
         TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
         if (!(item == null)) {
-            item.getParent().getChildren().remove(item);
-            if (course.getListPlanNames().contains(item.getValue())) {
-                course.removePlan((String) item.getValue());
-            } else {
-                for (Plan plan : course.getPlanList()) {
-                    if (plan.getEventList().contains(item.getValue())) {
-                        plan.removeEvent((String) item.getValue());
-                    } else {
-                        List<Card> fakeCardList = new ArrayList<>(plan.getCardList());
-                        for (Card card : fakeCardList) {
-                            if (card.getTitle().equals(item.getValue())) {
-                                plan.removeCard((String) item.getValue());
+            if(course.getPlanList().size() < 2){
+                new Alert(Alert.AlertType.ERROR, "You only have one more plan!").showAndWait();
+            }else {
+                item.getParent().getChildren().remove(item);
+                if (course.getListPlanNames().contains(item.getValue())) {
+                    course.removePlan((String) item.getValue());
+                } else {
+                    for (Plan plan : course.getPlanList()) {
+                        if (plan.getEventList().contains(item.getValue())) {
+                            plan.removeEvent((String) item.getValue());
+                        } else {
+                            List<Card> fakeCardList = new ArrayList<>(plan.getCardList());
+                            for (Card card : fakeCardList) {
+                                if (card.getTitle().equals(item.getValue())) {
+                                    plan.removeCard((String) item.getValue());
+                                }
                             }
                         }
                     }
