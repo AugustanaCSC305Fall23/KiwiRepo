@@ -4,20 +4,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="176.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="182.0" layoutY="14.0" text="Information" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="49.0" text="Made By : " textAlignment="CENTER">
+      <Label layoutX="14.0" layoutY="49.0" text="Developed By : " textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="90.0" layoutY="51.0" text="Aidan Hancock, Ethan Sosnowski, Amanuel Demissie, Sundeep Shrestha" />
+      <Label layoutX="117.0" layoutY="50.0" text="Aidan Hancock, Amanuel Demissie, Ethan Sosnowski, Sundeep Shrestha" />
       <Label layoutX="14.0" layoutY="80.0" text="Project Supervisor : ">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -30,5 +29,10 @@
          </font>
       </Label>
       <Label layoutX="152.0" layoutY="114.0" text="Dr. Keehn" />
+      <Label layoutX="135.0" layoutY="146.0" prefHeight="20.0" prefWidth="262.0" text="Team Kiwi, member of ACE Consulting">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
