@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="182.0" layoutY="14.0" text="Information" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="49.0" text="Made By : " textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="51.0" text="Aidan Hancock, Ethan Sosnowski, Amanuel Demissie, Sundeep Shrestha" />
+      <Label layoutX="14.0" layoutY="80.0" text="Project Supervisor : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="152.0" layoutY="82.0" text="Dr. Stonedahl" />
+      <Label layoutX="14.0" layoutY="112.0" text="Project Designer : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="152.0" layoutY="114.0" text="Dr. Keehn" />
+   </children>
+</AnchorPane>
