@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class PopUpCardController extends FavoriteCardCollection {
+public class PopUpCardController {
 
     @FXML
     private ImageView popUpImageView;
@@ -60,16 +60,5 @@ public class PopUpCardController extends FavoriteCardCollection {
         popUpImageView.getScene().getWindow().hide();
     }
 
-    @FXML
-    void favorite(ActionEvent event){
-        if (favoriteCheckBox.isSelected()){
-            if (!getFavorite().contains(card)){
-                setFavorite(card);
-            }
-        } else {
-            if (getFavorite().contains(card)){
-                removeFav(card);
-            }
-        }
-    }
+
 }
