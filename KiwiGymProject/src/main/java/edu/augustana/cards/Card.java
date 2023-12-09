@@ -41,6 +41,9 @@ public class Card implements java.io.Serializable{
     @CsvBindAndSplitByName(elementType = String.class, column = "Keywords", splitOn = "\\,", required = true)
     private ArrayList<String> keyWords;
 
+
+    private String uniqueID;
+
     /**
      *
      * @return image of the current card

@@ -15,7 +15,7 @@
          </image></ImageView>
       <Button fx:id="closeButton" layoutX="307.0" layoutY="520.0" mnemonicParsing="false" onAction="#closePopUp" text="Close" />
       <Button fx:id="addToPlanButton" layoutX="419.0" layoutY="520.0" mnemonicParsing="false" onAction="#addToPlanButton" text="Add to plan" />
-      <CheckBox fx:id="favoriteCheckBox" layoutX="14.0" layoutY="533.0" mnemonicParsing="false" onAction="#favorite" text="Favorite?" />
+      <CheckBox fx:id="favoriteCheckBox" layoutX="14.0" layoutY="533.0" mnemonicParsing="false" text="Favorite?" />
    </children>
    <padding>
       <Insets right="30.0" />
