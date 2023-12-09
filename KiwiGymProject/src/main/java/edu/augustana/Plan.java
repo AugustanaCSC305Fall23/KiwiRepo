@@ -10,18 +10,23 @@ public class Plan {
     private List<String> eventList;
     private char gender;
     private List<String> planEquipment;
-    private static List<Card> cardList;
+    private List<Card> cardList;
+    private List<String> cardTitles;
 
 
     public Plan(String NewPlanName) {
         name = NewPlanName;
         cardList = new ArrayList<>();
+        cardTitles = new ArrayList<>();
         planEquipment = new ArrayList<>();
         eventList = new ArrayList<>();
     }
     public void addCard(Card cardToAdd){
         cardList.add(cardToAdd);
-        eventList.add(cardToAdd.getEvent());
+        cardTitles.add(cardToAdd.getTitle());
+        if (!eventList.contains(cardToAdd.getEvent())){
+            eventList.add(cardToAdd.getEvent());
+        }
         addEquipment(cardToAdd);
     }
     public void addEquipment(Card card){
@@ -32,12 +37,32 @@ public class Plan {
             }
         }
     }
+    public void removeEvent(String event){
+        eventList.remove(event);
+        List<Card> copyList = new ArrayList<>(cardList);
+        for (Card card : copyList){
+            if(card.getEvent().equals(event)){
+                cardList.remove(card);
+                cardTitles.remove(card.getTitle());
+            }
+        }
+    }
+    public void removeCard(String cardName){
+        cardList.remove(cardTitles.indexOf(cardName));
+        cardTitles.remove(cardName);
+    }
     public String getName() {
         return name;
     }
+    public void changeName(String name){
+        this.name = name;
+    }
 
-    public List<String> getEvent() {
+    public List<String> getEventList() {
         return eventList;
+    }
+    public void changeEventName(String newName, String oldName){
+        eventList.add(eventList.indexOf(oldName), newName);
     }
 
     public char getGender() {
@@ -51,6 +76,7 @@ public class Plan {
     public List<Card> getCardList() {
         return cardList;
     }
+
     @Override
     public String toString(){
         return "Name: " + name + '\'' +

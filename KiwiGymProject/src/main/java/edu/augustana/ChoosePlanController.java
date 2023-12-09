@@ -26,6 +26,7 @@ public class ChoosePlanController {
 
     @FXML
     public void updateChoiceBox(){
+        choosePlanChoiceBox.getItems().clear();
         for (Plan plan : Course.getPlanList()){
             choosePlanChoiceBox.getItems().add(plan.getName());
         }
