@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreateAPlanController  implements Initializable {
-    public Button addCardBtn;
+
     @FXML
     private Button searchButton;
     public CheckBox addedCardsCheckBox;
@@ -93,8 +93,6 @@ public class CreateAPlanController  implements Initializable {
         try {
             cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/Demo1/Demo1.csv")).withType(Card.class).build().parse();
             cardBeans.addAll(new CsvToBeanBuilder(new FileReader("CardPacks/Demo2/Demo2.csv")).withType(Card.class).build().parse());
-            //demoTwoCards = new CsvToBeanBuilder(new FileReader("CardPacks/Demo2.csv")).withType(Card.class).build().parse();
-            //cardBeans.addAll(demoTwoCards);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -135,13 +133,16 @@ public class CreateAPlanController  implements Initializable {
     @FXML
     void saveCourse(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Save" + course.getName());
+        fileChooser.setTitle("Save " + course.getName());
         FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("GymProfCourse (*.GymProfCourse)", "*.GymCourse");
         fileChooser.getExtensionFilters().add(filter);
         Window mainWindow = lessonPlanTreeView.getScene().getWindow();
         File chosenFile = fileChooser.showSaveDialog(mainWindow);
-        //saveCurrentCourseToFile(chosenFile);
+
+        GymnasticsApp.saveCurrentCourseToFile(chosenFile, course);
     }
+
+
 
     /**loads a plan from the chosen file
      *
@@ -165,16 +166,15 @@ public class CreateAPlanController  implements Initializable {
 //            }
         }
     }
-//    private void saveCurrentCourseToFile(File chosenFile) {
-//        if (chosenFile != null) {
-//            try {
-//                GymnasticsApp.saveCurrentCourseToFile(chosenFile);
-//            } catch (IOException e) {
-//                new Alert(Alert.AlertType.ERROR, "Error saving course to file: " + chosenFile).show();
-//            }
-//        }
-//    }
-
+    static void saveCurrentCourseToFile(File chosenFile, Course course) {
+        if (chosenFile != null && course != null) {
+            try {
+                course.saveToFile(chosenFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @FXML
     void checkCBsFemaleGend(ActionEvent event) {
