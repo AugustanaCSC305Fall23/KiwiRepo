@@ -96,7 +96,15 @@ public class CreateAPlanController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        createTreeView();
+        if(course == null){
+            createTreeView();
+        }else{
+            try{
+                loadTreeView();
+            }catch (IOException e){
+                throw new RuntimeException();
+            }
+        }
 
         Path startPath = Paths.get("CardPacks"); // replace with your directory path
         cardBeans = new ArrayList<>();
@@ -356,12 +364,14 @@ public class CreateAPlanController  implements Initializable {
     */
     @FXML
     private void createTreeView() {
-        String courseName = "course 1";
+        String courseName = " ";
         if(!loadCourse) {
-            TextInputDialog textInputDialog = new TextInputDialog();
-            textInputDialog.setHeaderText("Enter Course name");
-            textInputDialog.showAndWait();
-            courseName = textInputDialog.getEditor().getText();
+            while(courseName.length() < 3) {
+                TextInputDialog textInputDialog = new TextInputDialog();
+                textInputDialog.setHeaderText("Enter Course name");
+                textInputDialog.showAndWait();
+                courseName = textInputDialog.getEditor().getText();
+            }
         }
         this.course = new Course(courseName);
         currentCourseLabel.setText(courseName);
@@ -386,6 +396,33 @@ public class CreateAPlanController  implements Initializable {
         planList.addAll(map.get(course.getName()));
         for(Plan plan: planList){
             course.addPlan(plan);
+            TreeItem<String> newPlanTree = new TreeItem<String>(plan.getName());
+            overallRoot.getChildren().add(newPlanTree);
+        }
+        for(Plan plan : course.getPlanList()){
+            for (Card card : plan.getCardList()){
+                String cardEvent = card.getEvent();
+                int planNum = findPlanIntTreeView(plan.getName());
+                int eventNum = isEventInTreeView(cardEvent, planNum);
+                if (eventNum > overallRoot.getChildren().get(planNum).getChildren().size()) {
+                    TreeItem newEvent = new TreeItem(cardEvent);
+                    TreeItem newCard = new TreeItem(card.getTitle());
+                    newEvent.getChildren().add(newCard);
+                    overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
+                } else {
+                    TreeItem newCard = new TreeItem(card.getTitle());
+                    overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
+                }
+            }
+        }
+    }
+    private void loadTreeView()throws IOException{
+        currentCourseLabel.setText(course.getName());
+        TreeItem<String> coursePlanTree = new TreeItem<>(course.getName());
+        overallRoot = coursePlanTree;
+        lessonPlanTreeView.showRootProperty().setValue(false);
+        lessonPlanTreeView.setRoot(overallRoot);
+        for(Plan plan: course.getPlanList()){
             TreeItem<String> newPlanTree = new TreeItem<String>(plan.getName());
             overallRoot.getChildren().add(newPlanTree);
         }
