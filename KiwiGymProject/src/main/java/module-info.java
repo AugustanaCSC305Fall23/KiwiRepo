@@ -5,6 +5,7 @@ module edu.augustana {
     requires com.opencsv;
     requires java.sql;
     requires com.google.gson;
+    requires org.junit.jupiter.api;
 
     opens edu.augustana;
     exports edu.augustana;

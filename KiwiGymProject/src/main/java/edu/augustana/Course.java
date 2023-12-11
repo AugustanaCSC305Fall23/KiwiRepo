@@ -9,6 +9,7 @@ import java.util.*;
 //for the list of plans in the tree view
 public class Course {
     private String name;
+    private int numPlans;
     private static List<Plan> listOfPlans;
     private static List<String>listPlanNames;
 
@@ -16,6 +17,7 @@ public class Course {
         listOfPlans = new ArrayList<>();
         listPlanNames = new ArrayList<>();
         this.name = name;
+        this.numPlans = 0;
     }
 
     /** adds a plan to the list of plans in the course
@@ -25,6 +27,7 @@ public class Course {
     public void addPlan(Plan plan){
         listOfPlans.add(plan);
         listPlanNames.add(plan.getName());
+        numPlans++;
     }
 
     /** removes the plan that is wanted to be removed
@@ -34,6 +37,7 @@ public class Course {
     public void removePlan(String planName){
         listOfPlans.remove(listPlanNames.indexOf(planName));
         listPlanNames.remove(planName);
+        numPlans--;
     }
 
     /** adds a card to the specified plan
@@ -45,6 +49,7 @@ public class Course {
         Plan selectedPlan = listOfPlans.get(listPlanNames.indexOf(plan));
         selectedPlan.addCard(card);
     }
+
 
     public String getName(){
         return name;
@@ -66,6 +71,7 @@ public class Course {
     public static List<String> getListPlanNames(){
         return listPlanNames;
     }
+    public int getNumPlans(){return numPlans;}
 
     /** reads a file and converts the contents to a course
      *
