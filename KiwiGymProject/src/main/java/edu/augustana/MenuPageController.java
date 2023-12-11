@@ -2,6 +2,8 @@ package edu.augustana;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ public class MenuPageController {
     private Button loadPlan;
     @FXML
     private Button createAPlan;
+    private static Map<String, List<Plan>> courseMap;
 
     /*
     shows a popup of information from the development team
@@ -46,6 +49,9 @@ public class MenuPageController {
     private void switchToCreateAPlan(ActionEvent event) throws IOException {
         GymnasticsApp.setRoot("CreateAPlan");
     }
+    public static Map<String, List<Plan>> getCourseMap(){
+        return courseMap;
+    }
     /*
     loads a saved plan from the current computer
      */
@@ -57,7 +63,8 @@ public class MenuPageController {
         fileChooser.getExtensionFilters().add(filter);
         Window mainWindow = loadPlan.getScene().getWindow();
         File chosenFile = fileChooser.showOpenDialog(mainWindow);
-        CreateAPlanController.loadPlan(chosenFile);
+        courseMap = CreateAPlanController.loadCourse(chosenFile);
+        CreateAPlanController.changeLoadPlan();
         GymnasticsApp.setRoot("CreateAPlan");
     }
 }

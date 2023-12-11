@@ -69,40 +69,29 @@ public class Course {
 
     /** reads a file and converts the contents to a course
      *
-     * @param logFile the file that is being read
+     * @param courseFile the file that is being read
      * @return a course object from the file
      * @throws IOException if the file is not correct
      */
-    public static Course loadFromFile(File logFile) throws IOException {
-        FileReader reader = new FileReader(logFile);
+    public static Course loadFromFile(File courseFile) throws IOException {
+        FileReader reader = new FileReader(courseFile);
         Gson gson = new Gson();
         return gson.fromJson(reader,Course.class);
     }
 
     /** saves the current course to a file
      *
-     * @param logFile the file that it is being saved to
+     * @param courseFile the file that it is being saved to
      * @throws IOException
      */
-    public void saveToFile(File logFile) throws IOException {
+    public void saveToFile(File courseFile) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, List<Plan>> courseMap = new HashMap<>();
         courseMap.put(name, listOfPlans);
-
         String serializedGymCourse = gson.toJson(courseMap);
-        PrintWriter writer = new PrintWriter(new FileWriter(logFile));
+        PrintWriter writer = new PrintWriter(new FileWriter(courseFile));
         writer.print(serializedGymCourse);
         writer.close();
     }
-//    public void saveToFile(File logFile) throws IOException {
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//        String serializedGymCourse = gson.toJson(this);
-//        PrintWriter writer = new PrintWriter(new FileWriter(logFile));
-//        writer.print(serializedGymCourse);
-//        for (Plan plan : listOfPlans){
-//            String serializedPlan = gson.toJson(plan);
-//            writer.println(serializedPlan);
-//        }
-//        writer.close();
-//    }
+
 }
