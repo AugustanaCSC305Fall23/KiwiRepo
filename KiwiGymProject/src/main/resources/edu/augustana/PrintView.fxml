@@ -7,22 +7,26 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-
+<?import javafx.scene.layout.VBox?>
 
 <HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrintViewController">
    <children>
-      <AnchorPane prefHeight="543.0" prefWidth="479.0">
+      <VBox>
          <children>
-            <ScrollPane layoutY="56.0" prefHeight="250.0" prefWidth="400.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
-               <content>
-                  <GridPane fx:id="printGridPane" prefHeight="57.0" prefWidth="0.0">
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <HBox layoutY="487.0">
+            <AnchorPane prefHeight="724.0" prefWidth="638.66">
+               <children>
+                  <ScrollPane layoutY="56.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
+                     <content>
+                        <GridPane fx:id="printGridPane" prefHeight="57.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <HBox>
                <children>
                   <Button fx:id="printButon" mnemonicParsing="false" onAction="#printGridPaneContent" text="Print Images">
                      <HBox.margin>
@@ -37,20 +41,38 @@
                </children>
             </HBox>
          </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="543.0" prefWidth="479.0">
+         <HBox.margin>
+            <Insets left="100.0" />
+         </HBox.margin>
+      </VBox>
+      <VBox>
          <children>
-            <ScrollPane layoutY="56.0" prefHeight="250.0" prefWidth="400.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
-               <content>
-                  <GridPane fx:id="printTextGridPane" prefHeight="57.0" prefWidth="0.0">
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <HBox layoutY="487.0" />
+            <AnchorPane prefHeight="724.0" prefWidth="638.66">
+               <children>
+                  <ScrollPane layoutY="56.0" prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
+                     <content>
+                        <GridPane fx:id="printTextGridPane" prefHeight="57.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <HBox prefHeight="25.0" prefWidth="479.0">
+               <children>
+                  <Button fx:id="printTextBtn" mnemonicParsing="false" onAction="#printTextGridePaneContent" text="Print Text">
+                     <HBox.margin>
+                        <Insets left="235.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </AnchorPane>
+         <HBox.margin>
+            <Insets right="40.0" />
+         </HBox.margin>
+      </VBox>
    </children>
 </HBox>

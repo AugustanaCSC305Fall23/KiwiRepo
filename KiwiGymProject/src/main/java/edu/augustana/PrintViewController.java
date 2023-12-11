@@ -2,9 +2,11 @@ package edu.augustana;
 
 import edu.augustana.cards.Card;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.print.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,14 +18,16 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.net.URL;
+import java.util.*;
 
 public class PrintViewController {
 
     private Plan plan;
+
+    @FXML
+    private ChoiceBox<String> printEquipmentBtn;
+
 
     @FXML
     private GridPane printTextGridPane;
@@ -44,17 +48,16 @@ public class PrintViewController {
     @FXML
     private Button printPlanBtn;
 
-    public HBox getPrintViewHbox(){
-        return cardHbox;
-    }
 
-    public GridPane getPrintGridPane(){
-        return printGridPane;
-    }
 
     public PrintViewController(){
 
+
     }
+
+
+
+
 
     @FXML
     public void printGridPaneContent() {
@@ -73,6 +76,10 @@ public class PrintViewController {
             // Scale the gridPane to fit the page
             printGridPane.getTransforms().add(new Scale(scale, scale));
 
+
+
+
+
             if (printerJob.showPrintDialog(printGridPane.getScene().getWindow())) {
                 boolean success = printerJob.printPage(pageLayout, printGridPane);
                 if (!success) {
@@ -84,6 +91,40 @@ public class PrintViewController {
 
             // Restore the original scale after printing
             printGridPane.getTransforms().setAll(originalScale);
+
+            printerJob.endJob();
+
+        }
+    }
+
+    @FXML
+    public void printTextGridePaneContent(){
+        PrinterJob printerJob = PrinterJob.createPrinterJob();
+        if (printerJob != null) {
+
+            PageLayout pageLayout = printerJob.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
+
+            double scaleX = pageLayout.getPrintableWidth() / printTextGridPane.getBoundsInParent().getWidth();
+            double scaleY = pageLayout.getPrintableHeight() / printTextGridPane.getBoundsInParent().getHeight();
+            double scale = Math.min(scaleX, scaleY);
+
+
+            Scale originalScale = new Scale(printTextGridPane.getScaleX(), printTextGridPane.getScaleY());
+
+            // Scale the gridPane to fit the page
+            printTextGridPane.getTransforms().add(new Scale(scale, scale));
+
+            if (printerJob.showPrintDialog(printTextGridPane.getScene().getWindow())) {
+                boolean success = printerJob.printPage(pageLayout, printTextGridPane);
+                if (!success) {
+                    // Handle unsuccessful print
+                }
+            } else {
+                // Handle case where print dialog is canceled or no printers are found
+            }
+
+            // Restore the original scale after printing
+            printTextGridPane.getTransforms().setAll(originalScale);
 
             printerJob.endJob();
         }
@@ -124,8 +165,8 @@ public class PrintViewController {
             for (Image cardImages: eventToCards.get(events)){
                 ImageView imageView = new ImageView(cardImages);
                 imageView.setPreserveRatio(true);
-                imageView.setFitWidth(350);
-                imageView.setFitHeight(270.45);
+                imageView.setFitWidth(300);
+                imageView.setFitHeight(177.485);
 
 
                 if (column == 5) {
@@ -165,34 +206,6 @@ public class PrintViewController {
             rowText += 2;
         }
 
-
-    }
-
-    public static void printCardsFromPlan(String planName) {
-
-        PrinterJob job = PrinterJob.createPrinterJob();
-        boolean proceed = job.showPrintDialog(null);
-        PageLayout pageLayout = job.getJobSettings().getPageLayout();
-        double printableWidth = pageLayout.getPrintableWidth();
-
-        Plan planToBePrinted = Course.getPlanList().get(Course.getListPlanNames().indexOf(planName));
-
-        //maps event to card images that belong to that event
-
-
-
-        VBox vBox = new VBox(10);
-
-
-        boolean success = job.printPage(vBox);
-        if (!success) {
-            System.out.println("printing not wokring aman");
-
-        } else {
-
-        }
-
-        job.endJob();
 
     }
 
