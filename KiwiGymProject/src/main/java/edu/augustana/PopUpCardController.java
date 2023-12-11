@@ -1,6 +1,7 @@
 package edu.augustana;
 
 import edu.augustana.cards.Card;
+import edu.augustana.cards.CardPrinter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +22,13 @@ public class PopUpCardController {
     private ImageView popUpImageView;
     @FXML
     private Button addToPlanButton;
+
+    @FXML
+    private Button printCardBtn;
+
+    @FXML
+    private AnchorPane popUpPane;
+
     @FXML
     private CheckBox favoriteCheckBox;
     private Card card;
@@ -61,6 +70,11 @@ public class PopUpCardController {
         stage1.setScene(choosePlanScene);
         stage1.showAndWait();
         popUpImageView.getScene().getWindow().hide();
+    }
+
+    @FXML
+    public void onPrintButtonAction(ActionEvent event) {
+        new CardPrinter().printCard(popUpImageView);
     }
 
     @FXML

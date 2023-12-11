@@ -60,15 +60,15 @@ public class Card implements java.io.Serializable{
     public String toString(){
         return "Code: "+code+"\n " +
                 "Event: "+event+"\n " +
-                "Category: "+category+"\n " +
+                //"Category: "+category+"\n " +
                 "Title: "+title+"\n " +
-                "PackFolder: "+packFolder+"\n " +
-                "Image: "+image+"\n " +
-                "Gender: "+gender+"\n "+
-                "Model sex: "+modelSex+"\n " +
+                //"PackFolder: "+packFolder+"\n " +
+                //"Image: "+image+"\n " +
+                //"Gender: "+gender+"\n "+
+                //"Model sex: "+modelSex+"\n " +
                 "Level: "+level+"\n " +
-                "Equipment: "+equipment+"\n " +
-                "Keyword: "+keyWords+"\n \n";
+                "Equipment: "+equipment+"\n ";
+                //"Keyword: "+keyWords+"\n \n";
     }
     public String getCode() {
         return code;

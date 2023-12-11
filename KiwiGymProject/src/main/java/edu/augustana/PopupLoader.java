@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class PopupLoader {
 
-    public static void cardPopupWindow(Card card) {
+    public static void cardPopupWindow(Card card) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(PopUpCardController.class.getResource("PopUpCard.fxml"));
             Parent root = fxmlLoader.load();
