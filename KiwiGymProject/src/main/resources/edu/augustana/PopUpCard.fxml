@@ -15,8 +15,9 @@
          </image></ImageView>
       <Button fx:id="closeButton" layoutX="307.0" layoutY="520.0" mnemonicParsing="false" onAction="#closePopUp" text="Close" />
       <Button fx:id="addToPlanButton" layoutX="419.0" layoutY="520.0" mnemonicParsing="false" onAction="#addToPlanButton" text="Add to plan" />
-      <Button fx:id="printCardBtn" layoutX="543.0" layoutY="521.0" mnemonicParsing="false" onAction="#onPrintButtonAction" text="Print Card" />
-      <CheckBox fx:id="favoriteCheckBox" layoutX="14.0" layoutY="533.0" mnemonicParsing="false" onAction="#favorite" text="Favorite?" />
+
+       <Button fx:id="printCardBtn" layoutX="543.0" layoutY="521.0" mnemonicParsing="false" onAction="#onPrintButtonAction" text="Print Card" />
+      <CheckBox fx:id="favoriteCheckBox" layoutX="14.0" layoutY="533.0" mnemonicParsing="false" text="Favorite?" />
 
    </children>
    <padding>

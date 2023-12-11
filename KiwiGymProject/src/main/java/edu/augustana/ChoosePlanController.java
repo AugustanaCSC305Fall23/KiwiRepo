@@ -35,7 +35,7 @@ public class ChoosePlanController {
     }
 
     @FXML
-    public void updateChoiceBox(){
+    private void updateChoiceBox(){
         choosePlanChoiceBox.getItems().clear();
         for (Plan plan : Course.getPlanList()){
             choosePlanChoiceBox.getItems().add(plan.getName());
@@ -47,9 +47,10 @@ public class ChoosePlanController {
     }
     @FXML
     private void setFinishAddToPlanButton(ActionEvent event)throws IOException{
-        CreateAPlanController.addCardToTreeView(cardToAdd, choosePlanChoiceBox.getValue());
+        CreateAPlanController.addCardToCourse(cardToAdd, choosePlanChoiceBox.getValue());
         finishAddToPlanButton.getScene().getWindow().hide();
     }
+
 
     @FXML
     private void switchToPrintView() throws IOException {

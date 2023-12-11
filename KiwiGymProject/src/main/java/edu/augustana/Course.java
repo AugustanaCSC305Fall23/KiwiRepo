@@ -17,22 +17,46 @@ public class Course {
         listPlanNames = new ArrayList<>();
         this.name = name;
     }
+
+    /** adds a plan to the list of plans in the course
+     *
+     * @param plan the plan that is being added to the course
+     */
     public void addPlan(Plan plan){
         listOfPlans.add(plan);
         listPlanNames.add(plan.getName());
     }
 
+
+    /** removes the plan that is wanted to be removed
+     *
+     * @param planName the name of the plan that is going to be removed
+     */
+
     public void removePlan(String planName){
         listOfPlans.remove(listPlanNames.indexOf(planName));
         listPlanNames.remove(planName);
     }
+
+    /** adds a card to the specified plan
+     *
+     * @param plan the plan that the card is being added to
+     * @param card the card that is being added to the plan
+     */
     public void addCardToPlan(String plan, Card card){
         Plan selectedPlan = listOfPlans.get(listPlanNames.indexOf(plan));
         selectedPlan.addCard(card);
     }
+
     public String getName(){
         return name;
     }
+
+    /** changes the name of the old plan to the new name
+     *
+     * @param newName the new name that is inputted
+     * @param oldName the old name of the plan
+     */
     public void changePlanName(String newName, String oldName){
         listOfPlans.get(listPlanNames.indexOf(oldName)).changeName(newName);
         listPlanNames.add(listPlanNames.indexOf(oldName), newName);
@@ -44,11 +68,24 @@ public class Course {
     public static List<String> getListPlanNames(){
         return listPlanNames;
     }
+
+    /** reads a file and converts the contents to a course
+     *
+     * @param logFile the file that is being read
+     * @return a course object from the file
+     * @throws IOException if the file is not correct
+     */
     public static Course loadFromFile(File logFile) throws IOException {
         FileReader reader = new FileReader(logFile);
         Gson gson = new Gson();
         return gson.fromJson(reader,Course.class);
     }
+
+    /** saves the current course to a file
+     *
+     * @param logFile the file that it is being saved to
+     * @throws IOException
+     */
     public void saveToFile(File logFile) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         Map<String, List<Plan>> courseMap = new HashMap<>();

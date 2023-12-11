@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -14,6 +16,11 @@ public class GymnasticsApp extends Application {
 
     private static Scene scene;
 
+    /** creates the menu page
+     *
+     * @param stage the stage that everything is going to be created on
+     * @throws IOException
+     */
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MenuPage"), 700, 500);
@@ -34,7 +41,15 @@ public class GymnasticsApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GymnasticsApp.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
+    static void saveCurrentCourseToFile(File chosenFile, Course course) {
+        if (chosenFile != null && course != null) {
+            try {
+                course.saveToFile(chosenFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void main(String[] args) {
         launch();

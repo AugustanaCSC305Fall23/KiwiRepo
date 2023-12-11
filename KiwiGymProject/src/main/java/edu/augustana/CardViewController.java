@@ -19,6 +19,15 @@ public class CardViewController {
     @FXML
     private VBox cardVBox;
 
+
+    //private static final String CARD_IMAGE_PATH = "CardPacks/DEMO1Pack/";
+
+    /**
+     *
+     * @param card the card that is going to be displayed
+     *
+     */
+
     public void setImgView(Card card) {
         try {
             displayThumbnailImage(card);
@@ -43,7 +52,9 @@ public class CardViewController {
             }
         });
     }
-
+    /*
+        displays the image of the card
+     */
     private void displayThumbnailImage(Card card) {
         String thumbNailName = card.getImage().replace(".png",".jpg");
 
