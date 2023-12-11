@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Scale;
 
 import java.io.IOException;
@@ -139,6 +141,28 @@ public class PrintViewController {
             column = 0;
             row += 2;
 
+        }
+
+        int columnText = 0;
+        int rowText = 1;
+
+        for(String events: eventToCardText.keySet()){
+
+            for(Card card: eventToCardText.get(events)){
+                Text cardText = new Text(card.toString());
+                cardText.setFont(Font.font(20));
+                cardText.setStyle("-fx-margin: 10;");
+
+                if (columnText == 5) {
+                    columnText = 0;
+                    rowText += 1;
+                }
+
+                printTextGridPane.add(cardText, columnText++, rowText);
+            }
+
+            columnText = 0;
+            rowText += 2;
         }
 
 

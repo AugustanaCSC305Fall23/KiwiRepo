@@ -9,30 +9,48 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<AnchorPane prefHeight="543.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrintViewController">
+<HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrintViewController">
    <children>
-      <ScrollPane layoutY="56.0" prefHeight="250.0" prefWidth="400.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
-         <content>
-            <GridPane fx:id="printGridPane" prefHeight="57.0" prefWidth="0.0">
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </content>
-      </ScrollPane>
-      <HBox layoutY="487.0">
+      <AnchorPane prefHeight="543.0" prefWidth="479.0">
          <children>
-            <Button fx:id="printButon" mnemonicParsing="false" onAction="#printGridPaneContent" text="Print Images">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="printViewBackBtn" mnemonicParsing="false" onAction="#switchToPlanChooser" text="Back">
-               <HBox.margin>
-                  <Insets left="350.0" />
-               </HBox.margin>
-            </Button>
+            <ScrollPane layoutY="56.0" prefHeight="250.0" prefWidth="400.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
+               <content>
+                  <GridPane fx:id="printGridPane" prefHeight="57.0" prefWidth="0.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <HBox layoutY="487.0">
+               <children>
+                  <Button fx:id="printButon" mnemonicParsing="false" onAction="#printGridPaneContent" text="Print Images">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="printViewBackBtn" mnemonicParsing="false" onAction="#switchToPlanChooser" text="Back">
+                     <HBox.margin>
+                        <Insets left="350.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-      </HBox>
+      </AnchorPane>
+      <AnchorPane prefHeight="543.0" prefWidth="479.0">
+         <children>
+            <ScrollPane layoutY="56.0" prefHeight="250.0" prefWidth="400.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
+               <content>
+                  <GridPane fx:id="printTextGridPane" prefHeight="57.0" prefWidth="0.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <HBox layoutY="487.0" />
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</HBox>
