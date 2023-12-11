@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -144,6 +145,9 @@
             <Button fx:id="searchButton" alignment="CENTER" mnemonicParsing="false" onAction="#search" prefHeight="19.0" text="Search" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <graphic>
                </graphic>
+               <tooltip>
+                  <Tooltip text="Click to finalize search" />
+               </tooltip>
             </Button>
             <Label text="Model Gender" wrapText="true" GridPane.rowIndex="2">
                <font>
