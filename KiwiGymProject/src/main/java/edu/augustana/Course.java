@@ -21,6 +21,7 @@ public class Course {
         listOfPlans.add(plan);
         listPlanNames.add(plan.getName());
     }
+
     public void removePlan(String planName){
         listOfPlans.remove(listPlanNames.indexOf(planName));
         listPlanNames.remove(planName);

@@ -19,17 +19,19 @@ public class CardViewController {
     @FXML
     private VBox cardVBox;
 
-    //private static final String CARD_IMAGE_PATH = "CardPacks/DEMO1Pack/";
-
     public void setImgView(Card card) {
         try {
             displayThumbnailImage(card);
+            //displayDummyCards();
             setCardVBoxClickListener(card);
         } catch (Exception e) {
             handleException(e);
         }
 
+    }
 
+    public void setImgView(Image img){
+        cardImage.setImage(img);
     }
 
     private void setCardVBoxClickListener(Card card) {
@@ -42,24 +44,21 @@ public class CardViewController {
         });
     }
 
-    /*private void handleException(Exception e) {
-        PopupLoader.handleException(e);
-    }*/
-
     private void displayThumbnailImage(Card card) {
-        StringBuilder thumbNail = new StringBuilder();
+        String thumbNailName = card.getImage().replace(".png",".jpg");
 
-        for (char c : card.getImage().toCharArray()) {
-            if (Character.isDigit(c)) {
-                thumbNail.append(c);
-            }
-        }
-
-        thumbNail.append(".jpg");
-
-
-        Image cardImage = new Image("file:CardPacks/" + card.getPackFolder() + "/thumbs/" + thumbNail);
+        Image cardImage = new Image("file:CardPacks/" + card.getPackFolder() + "/thumbs/" + thumbNailName);
 
         this.cardImage.setImage(cardImage);
+    }
+
+    private void displayDummyCards(){
+
+        for(int i = 0; i < 900; i++){
+            Image cardImage = new Image("file:CardPacks/StressTest/" + i +".jpg");
+
+            this.cardImage.setImage(cardImage);
+        }
+
     }
 }
