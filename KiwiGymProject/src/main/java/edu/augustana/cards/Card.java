@@ -42,8 +42,6 @@ public class Card implements java.io.Serializable{
     private ArrayList<String> keyWords;
 
 
-    private String uniqueID;
-
     /**
      *
      * @return image of the current card

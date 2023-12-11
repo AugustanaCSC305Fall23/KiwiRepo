@@ -1,5 +1,7 @@
 package edu.augustana;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.opencsv.bean.CsvToBeanBuilder;
 import edu.augustana.cards.Card;
 import edu.augustana.filters.*;
@@ -24,7 +26,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -85,6 +92,7 @@ public class CreateAPlanController  implements Initializable {
     public static Course course;
     public static Plan currentPlan;
     public int numCreatedPlans;
+    public static boolean loadCourse = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -138,6 +146,14 @@ public class CreateAPlanController  implements Initializable {
         genderCBList.add(maleCheckBox);
         modelCBList.add(maleModel);
         modelCBList.add(femaleModel);
+        if (loadCourse){
+            Map<String, List<Plan>> courseMap = MenuPageController.getCourseMap();
+            try {
+                loadTreeView(courseMap);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 
@@ -160,22 +176,19 @@ public class CreateAPlanController  implements Initializable {
      * @param chosenFile the file that the plan is in
      */
     @FXML
-    public static void loadPlan(File chosenFile) {
+    public static Map<String, List<Plan>> loadCourse(File chosenFile) {
         if (chosenFile != null) {
-//            try {
-//                //GymnasticsApp.loadCurrentCourseFromFile(chosenFile);
-//                overallRoot.getChildren().clear();
-//                //Course loadedLog = GymnasticsApp.getCurrentCourse();
-////                for(Plan plan : loadedLog.getPlanList()){
-////                    for (Card card : plan.getCardList()){
-////                        TreeItem newCard = new TreeItem(card.getTitle());
-////                        overallRoot.getChildren().add(newCard);
-////                    }
-////                }
-//            } catch (IOException ex) {
-//                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
-//            }
+            try {
+                FileReader reader = new FileReader(chosenFile);
+                Type type = new TypeToken<Map<String, List<Plan>>>(){}.getType();
+                Gson gson = new Gson();
+                Map<String, List<Plan>> map =  gson.fromJson(reader, type);
+                return map;
+            } catch (IOException ex) {
+                new Alert(Alert.AlertType.ERROR, "Error loading course file: " + chosenFile).show();
+            }
         }
+        return null;
     }
     static void saveCurrentCourseToFile(File chosenFile, Course course) {
         if (chosenFile != null && course != null) {
@@ -343,10 +356,13 @@ public class CreateAPlanController  implements Initializable {
     */
     @FXML
     private void createTreeView() {
-        TextInputDialog textInputDialog = new TextInputDialog();
-        textInputDialog.setHeaderText("Enter Course name");
-        textInputDialog.showAndWait();
-        String courseName = textInputDialog.getEditor().getText();
+        String courseName = "course 1";
+        if(!loadCourse) {
+            TextInputDialog textInputDialog = new TextInputDialog();
+            textInputDialog.setHeaderText("Enter Course name");
+            textInputDialog.showAndWait();
+            courseName = textInputDialog.getEditor().getText();
+        }
         this.course = new Course(courseName);
         currentCourseLabel.setText(courseName);
         currentPlan = new Plan("Plan 1");
@@ -360,6 +376,35 @@ public class CreateAPlanController  implements Initializable {
         currentPlanTree.setExpanded(true);
         planItems = currentPlanTree;
         numCreatedPlans = 1;
+    }
+    private void loadTreeView(Map<String, List<Plan>> map) throws IOException {
+        for(String courseName : map.keySet()){
+            course = new Course(courseName);
+        }
+        currentCourseLabel.setText(course.getName());
+        List<Plan> planList = new ArrayList<>();
+        planList.addAll(map.get(course.getName()));
+        for(Plan plan: planList){
+            course.addPlan(plan);
+            TreeItem<String> newPlanTree = new TreeItem<String>(plan.getName());
+            overallRoot.getChildren().add(newPlanTree);
+        }
+        for(Plan plan : course.getPlanList()){
+            for (Card card : plan.getCardList()){
+                String cardEvent = card.getEvent();
+                int planNum = findPlanIntTreeView(plan.getName());
+                int eventNum = isEventInTreeView(cardEvent, planNum);
+                if (eventNum > overallRoot.getChildren().get(planNum).getChildren().size()) {
+                    TreeItem newEvent = new TreeItem(cardEvent);
+                    TreeItem newCard = new TreeItem(card.getTitle());
+                    newEvent.getChildren().add(newCard);
+                    overallRoot.getChildren().get(planNum).getChildren().add(newEvent);
+                } else {
+                    TreeItem newCard = new TreeItem(card.getTitle());
+                    overallRoot.getChildren().get(planNum).getChildren().get(eventNum).getChildren().add(newCard);
+                }
+            }
+        }
     }
 
     /** adds a card to the course
@@ -455,7 +500,7 @@ public class CreateAPlanController  implements Initializable {
     void setDeleteButton(ActionEvent event) {
         TreeItem item = lessonPlanTreeView.getSelectionModel().getSelectedItem();
         if (!(item == null)) {
-            if(course.getPlanList().size() < 2){
+            if(course.getPlanList().size() < 2 && item.getParent() == overallRoot){
                 new Alert(Alert.AlertType.ERROR, "You only have one more plan!").showAndWait();
             }else {
                 item.getParent().getChildren().remove(item);
@@ -502,5 +547,8 @@ public class CreateAPlanController  implements Initializable {
         } else {
             new Alert(Alert.AlertType.ERROR, "Select something to edit!").showAndWait();
         }
+    }
+    public static void changeLoadPlan(){
+        loadCourse = !loadCourse;
     }
 }
