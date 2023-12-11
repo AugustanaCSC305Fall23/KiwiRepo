@@ -30,10 +30,12 @@ public class Course {
         numPlans++;
     }
 
+
     /** removes the plan that is wanted to be removed
      *
      * @param planName the name of the plan that is going to be removed
      */
+
     public void removePlan(String planName){
         listOfPlans.remove(listPlanNames.indexOf(planName));
         listPlanNames.remove(planName);

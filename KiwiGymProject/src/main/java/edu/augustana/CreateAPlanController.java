@@ -8,12 +8,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.print.PageLayout;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -23,9 +25,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class CreateAPlanController  implements Initializable {
 
@@ -64,12 +68,7 @@ public class CreateAPlanController  implements Initializable {
     private TextField shortCodeTextBox;
     @FXML
     private TextField superSearchTextBox;
-    @FXML
-    private Button printPlanButton;
-    @FXML
-    private Button savePlanButton;
-    @FXML
-    private Button addPlanButton;
+
     @FXML
     private GridPane cardGrid;
     @FXML
@@ -90,12 +89,24 @@ public class CreateAPlanController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createTreeView();
-        try {
-            cardBeans = new CsvToBeanBuilder(new FileReader("CardPacks/Demo1/Demo1.csv")).withType(Card.class).build().parse();
-            cardBeans.addAll(new CsvToBeanBuilder(new FileReader("CardPacks/Demo2/Demo2.csv")).withType(Card.class).build().parse());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+
+        Path startPath = Paths.get("CardPacks"); // replace with your directory path
+        cardBeans = new ArrayList<>();
+        try (Stream<Path> stream = Files.walk(startPath)) {
+            stream.filter(Files::isRegularFile) // Filter to find only files
+                    .filter(path -> path.toString().endsWith(".csv")) // Filter for .csv files
+                    .forEach(path -> {
+                        try {
+                            cardBeans.addAll(new CsvToBeanBuilder(new FileReader(path.toFile())).withType(Card.class).build().parse());
+                        } catch (FileNotFoundException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
+
 
         displayCards(cardBeans);
 
@@ -325,7 +336,7 @@ public class CreateAPlanController  implements Initializable {
 
     @FXML
     void printPlan(ActionEvent event) throws IOException {
-        GymnasticsApp.setRoot("PrintView");
+        GymnasticsApp.setRoot("choosePlanToBePrinted");
     }
     /*
     creates the tree view and sets the course and first plan to the desired data fields
@@ -382,9 +393,11 @@ public class CreateAPlanController  implements Initializable {
             course.addCardToPlan(planName, card);
         }
     }
+
     /*
     checks if the event is already in the tree view
      */
+
     private static int isEventInTreeView(String event, int planNum) throws IOException {
         int count = 0;
         for (TreeItem existingEvent : overallRoot.getChildren().get(planNum).getChildren()) {

@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
+import static edu.augustana.PopupLoader.handleException;
+
 
 public class CardViewController {
 
@@ -15,6 +19,7 @@ public class CardViewController {
     @FXML
     private VBox cardVBox;
 
+
     //private static final String CARD_IMAGE_PATH = "CardPacks/DEMO1Pack/";
 
     /**
@@ -22,41 +27,49 @@ public class CardViewController {
      * @param card the card that is going to be displayed
      *
      */
+
     public void setImgView(Card card) {
         try {
             displayThumbnailImage(card);
+            //displayDummyCards();
             setCardVBoxClickListener(card);
         } catch (Exception e) {
             handleException(e);
         }
 
+    }
 
+    public void setImgView(Image img){
+        cardImage.setImage(img);
     }
 
     private void setCardVBoxClickListener(Card card) {
-        cardVBox.setOnMouseClicked(e -> PopupLoader.cardPopupWindow(card));
-    }
-
-    private void handleException(Exception e) {
-        PopupLoader.handleException(e);
+        cardVBox.setOnMouseClicked(e -> {
+            try {
+                PopupLoader.cardPopupWindow(card);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
     /*
         displays the image of the card
      */
     private void displayThumbnailImage(Card card) {
-        StringBuilder thumbNail = new StringBuilder();
+        String thumbNailName = card.getImage().replace(".png",".jpg");
 
-        for (char c : card.getImage().toCharArray()) {
-            if (Character.isDigit(c)) {
-                thumbNail.append(c);
-            }
-        }
-
-        thumbNail.append(".jpg");
-
-
-        Image cardImage = new Image("file:CardPacks/" + card.getPackFolder() + "/thumbs/" + thumbNail);
+        Image cardImage = new Image("file:CardPacks/" + card.getPackFolder() + "/thumbs/" + thumbNailName);
 
         this.cardImage.setImage(cardImage);
+    }
+
+    private void displayDummyCards(){
+
+        for(int i = 0; i < 900; i++){
+            Image cardImage = new Image("file:CardPacks/StressTest/" + i +".jpg");
+
+            this.cardImage.setImage(cardImage);
+        }
+
     }
 }
