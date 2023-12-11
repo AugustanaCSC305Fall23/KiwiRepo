@@ -388,6 +388,8 @@ public class CreateAPlanController  implements Initializable {
         numCreatedPlans = 1;
     }
     private void loadTreeView(Map<String, List<Plan>> map) throws IOException {
+        course.removePlan("Plan 1");
+        overallRoot.getChildren().remove(0);
         for(String courseName : map.keySet()){
             course = new Course(courseName);
         }
